@@ -6,7 +6,6 @@
     "forin": true,
     "indent": [true, "spaces"],
     "label-position": true,
-    "linebreak-style": [true, "LF"],
     "label-undefined": true,
     "max-line-length": [true, 400],
     "no-arg": true,
