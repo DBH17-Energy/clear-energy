@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "docker-compose up",
-    "install": "./install",
+    "install": "./install || install",
     "test-go": "docker-compose -f docker-util.yml run utils bash -c \"cd blockchain/src/build-chaincode && GOPATH=$(pwd)/../.. go test\"",
     "test-server": "docker-compose build server && docker-compose run server bash -c \"npm test\"",
     "test-client": "docker-compose run -p 9876:9876 client bash -c \"npm test\"",
