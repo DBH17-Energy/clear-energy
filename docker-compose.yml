@@ -15,26 +15,8 @@ vp0:
   ports:
     - "7050:7050"
     - "7051:7051"
-#  command: sh -c "while ! nc membersrvc 7054 </dev/null; do sleep 1; done; peer node start"
   links:
     - membersrvc
-
-# TODO: connection issues when started the second time
-#vp1:
-#  extends:
-#    file: compose-defaults.yml
-#    service: vp
-#  environment:
-#    - CORE_PEER_ID=vp1
-#    - CORE_PEER_DISCOVERY_ROOTNODE=vp0:7051
-#    - CORE_SECURITY_ENROLLID=test_vp1
-#    - CORE_SECURITY_ENROLLSECRET=5wgHK9qqYaPy
-#    - CORE_PEER_PKI_ECA_PADDR=membersrvc:7054
-#    - CORE_PEER_PKI_TCA_PADDR=membersrvc:7054
-#    - CORE_PEER_PKI_TLSCA_PADDR=membersrvc:7054
-#  links:
-#    - vp0
-#    - membersrvc
 
 membersrvc:
    image: hyperledger/fabric-membersrvc:x86_64-0.6.1-preview
@@ -73,14 +55,3 @@ client:
       - ./client/angular-cli.json:/usr/src/app/angular-cli.json
       - ./client/tslint.json:/usr/src/app/tslint.json
   command: ng serve --host 0.0.0.0
-
-# Utils: we have go and cf here
-utils:
-  image: cesarev/fabric-boilerplate
-#  user: $UID # TODO
-  environment:
-  - GOPATH=/usr/src/app
-  volumes:
-  - .:/usr/src/app
-  command: "true"
-  # bash -c "cd ../blockchain/src/build-chaincode && GOPATH=$(pwd)/../.. go test"

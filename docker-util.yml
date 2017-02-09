@@ -1,0 +1,8 @@
+# Utils: we have go and cf here
+utils:
+  image: cesarev/fabric-boilerplate
+  environment:
+  - GOPATH=/usr/src/app
+  volumes:
+  - .:/usr/src/app
+  command: "true"
