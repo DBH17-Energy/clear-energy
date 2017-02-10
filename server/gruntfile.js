@@ -42,7 +42,7 @@ module.exports = function (grunt) {
                 legacyWatch: true,
                 options: {
                     env: {
-                        PORT: 8080,
+                        PORT: 8443,
                         NODE_ENV: 'development'
                     }
                 }

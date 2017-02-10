@@ -68,7 +68,7 @@ class App {
         new Routes(blockchainClient, logger).register(expressRouter);
         app.use('/', expressRouter);
 
-        const port = (process.env.VCAP_PORT || process.env.PORT || 8080);
+        const port = (process.env.VCAP_PORT || process.env.PORT || 8433);
         const host = (process.env.VCAP_HOST || process.env.HOST || 'localhost');
         app.listen(port);
 
