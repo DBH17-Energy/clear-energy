@@ -72,8 +72,10 @@ class App {
         const port = (process.env.VCAP_PORT || process.env.PORT || 8433);
         const host = (process.env.VCAP_HOST || process.env.HOST || 'localhost');
 
-        if (fs.existsSync('../resources/ssl/certificate.pem/')) {
+        if (fs.existsSync(path.join(__dirname, '../resources/ssl/certificate.pem'))) {
             logger.info('[NodeJS] GOT CERTIFICATE');
+        } else {
+            logger.info('[NodeJS] No certificate at ' + path.join(__dirname, '../resources/ssl/certificate.pem'));
         }
 
         app.listen(port);
