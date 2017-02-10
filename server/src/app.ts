@@ -80,13 +80,12 @@ class App {
                 cert: fs.readFileSync(path.join(__dirname, '../resources/ssl/certificate.pem'))
             };
             https.createServer(options, app).listen(port);
+            logger.info(`[NodeJS] Express server listening at https://${host}:${port}`);
         } else {
             logger.info('[NodeJS] No certificate at ' + path.join(__dirname, '../resources/ssl/certificate.pem') + ', starting HTTP server');
             app.listen(port);
+            logger.info(`[NodeJS] Express server listening at http://${host}:${port}`);
         }
-
-        // print a message when the server starts listening
-        logger.info(`[NodeJS] Express server listening at http://${host}:${port}`);
     }
 }
 
