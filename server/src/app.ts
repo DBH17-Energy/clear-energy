@@ -20,6 +20,7 @@ class App {
     public async run(): Promise<void> {
         const logger = new LoggerFactory().create();
         const fs = require('fs');
+        const https = require('https');
         const blockchain = BlockchainFactory.create(logger, Config.getServerDirectory());
         const chaincodeId = await blockchain.init(DeployPolicy.NEVER);
         logger.debug('[App]', 'Using chaincode id', chaincodeId);
@@ -73,12 +74,16 @@ class App {
         const host = (process.env.VCAP_HOST || process.env.HOST || 'localhost');
 
         if (fs.existsSync(path.join(__dirname, '../resources/ssl/certificate.pem'))) {
-            logger.info('[NodeJS] GOT CERTIFICATE');
+            logger.info('[NodeJS] Got certificate, starting HTTPS server');
+            var options = {
+                key: fs.readFileSync(path.join(__dirname, '../resources/ssl/private.key')),
+                cert: fs.readFileSync(path.join(__dirname, '../resources/ssl/certificate.pem'))
+            };
+            https.createServer(options, app).listen(port);
         } else {
-            logger.info('[NodeJS] No certificate at ' + path.join(__dirname, '../resources/ssl/certificate.pem'));
+            logger.info('[NodeJS] No certificate at ' + path.join(__dirname, '../resources/ssl/certificate.pem') + ', starting HTTP server');
+            app.listen(port);
         }
-
-        app.listen(port);
 
         // print a message when the server starts listening
         logger.info(`[NodeJS] Express server listening at http://${host}:${port}`);
