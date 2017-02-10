@@ -1,18 +1,58 @@
 #!/bin/bash -e
-hash docker || (echo "Please install docker first"; exit 1;)
-hash docker-compose || (echo "Please install docker-compose first"; exit 1;)
+#
+# This script makes sure your environment is up to date.
+#
 
-echo "Getting baseimage..."
-docker pull hyperledger/fabric-baseimage:x86_64-0.2.2
-docker tag hyperledger/fabric-baseimage:x86_64-0.2.2 hyperledger/fabric-baseimage:latest
+echo "###################################################"
+echo "#####   HYPERLEDGER FABRIC INSTALL SCRIPT     #####"
+echo "###################################################"
 
-echo "Downloading go dependencies..."
-docker-compose -f docker-util.yml run utils bash -c 'cd blockchain/src/build-chaincode && GOPATH=$(pwd)/../.. govend -v' && sudo chown -R $USER blockchain
+# catch ctrl+c to clean up
+trap 'printf "\nCTRL-C was pressed. Exiting..\n"; exit 0' SIGINT
 
-echo "Downloading images..."
+hash docker && echo "Docker installed: `docker -v`" || (echo "Need docker to be installed"; exit 1;)
+hash node && echo "Node installed: `node -v`" || (echo "Need nodejs to be installed"; exit 1;)
+hash npm && echo "NPM installed: `npm -v`" || (echo "Need npm to be installed"; exit 1;)
+hash go && echo "Go installed: `go version`" || (echo "Need go to be installed"; exit 1;)
+[ ! -z $GOPATH ] && echo "GOPATH set: $GOPATH" || (echo "Please set your GOPATH environment variable"; exit 1;)
+hash govend && printf "Govend installed\n\n" || printf 'Going to install it...\n\n' && go get github.com/govend/govend
+
+ask() {
+  local response
+  local msg="${1:-$1} [y/N] "; shift
+  read -r $4 -p "$msg" response || echo
+  case "$response" in
+    [yY][eE][sS]|[yY]) $1 ;;
+    *) $2 ;;
+  esac
+}
+
+install_global_dep() {
+    sudo chown -R $(whoami) `npm -g root`
+    printf 'Going to install...\n' && npm install -g angular-cli
+
+    # npm install, also installs updates go packages
+    cd server && npm install
+}
+
+show_disclaimer() {
+    printf "\nInstallation NOT completed. I will continue pulling docker images and creating the containers.\nIMPORTANT: Keep in mind you still need to install:\n\n"
+    printf "angular-cli => npm install -g angular-cli \n\n"
+    printf "If you encounter issues installing global dependencies you may need to grant access to `npm -g root` \n\n"
+    printf "sudo chown -R $(whoami) `npm -g root` \n\n"
+}
+
+hash ng && printf "Angular-cli installed: `ng -v`\n\n" || ask "Before starting the installation you need to grant access the current user to the global node_modules path (located in: `npm -g root`). Your root password is required. Do you want to continue?(enter=NO)" install_global_dep show_disclaimer
+
+# Get baseimage
+printf "Pulling Hyperledger Fabric docker images..."
+CURRENT_TAG='x86_64-0.2.2'
+docker pull hyperledger/fabric-baseimage:$CURRENT_TAG
+docker tag hyperledger/fabric-baseimage:$CURRENT_TAG hyperledger/fabric-baseimage:latest
+
+echo "Pulling all the other docker images..."
 docker-compose pull
 
-echo "Building images..."
-docker-compose build
-
-echo "Done! Start with docker-compose up."
+echo "Your environment is ready."
+printf "Now you can run:\n\ndocker-compose up (optional flag: --force-recreate)\n"
+exit 0
