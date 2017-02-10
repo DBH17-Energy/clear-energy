@@ -13,12 +13,14 @@ import {ThingsComponent} from './components/things/things.component';
 
 import {ThingService} from './services/thing.service'
 import {AuthenticationService} from './services/authentication.service'
+import {LogoutComponent} from "./components/logout/logout.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ThingsComponent
+    ThingsComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
