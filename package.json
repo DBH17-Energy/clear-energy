@@ -38,5 +38,6 @@
   "bugs": {
     "url": "https://github.com/DBH17-Energy/clear-energy/issues"
   },
-  "homepage": "https://github.com/DBH17-Energy/clear-energy"
+  "homepage": "https://github.com/DBH17-Energy/clear-energy",
+  "dependencies": {}
 }
