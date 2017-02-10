@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://localhost:8080/'
+  apiUrl: 'https://clear-energy:8080/'
 };
