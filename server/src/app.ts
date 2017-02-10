@@ -19,6 +19,7 @@ import {Container} from 'typedi';
 class App {
     public async run(): Promise<void> {
         const logger = new LoggerFactory().create();
+        const fs = require('fs');
         const blockchain = BlockchainFactory.create(logger, Config.getServerDirectory());
         const chaincodeId = await blockchain.init(DeployPolicy.NEVER);
         logger.debug('[App]', 'Using chaincode id', chaincodeId);
@@ -70,6 +71,11 @@ class App {
 
         const port = (process.env.VCAP_PORT || process.env.PORT || 8433);
         const host = (process.env.VCAP_HOST || process.env.HOST || 'localhost');
+
+        if (fs.existsSync('../resources/ssl/certificate.pem/')) {
+            logger.info('[NodeJS] GOT CERTIFICATE');
+        }
+
         app.listen(port);
 
         // print a message when the server starts listening
