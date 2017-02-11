@@ -1,0 +1,9 @@
+exclude:
+- /client/src/assets/js/ie/.*
+- /client/src/assets/js/Chart*
+component_depth: 1
+languages:
+- go
+- javascript
+- script
+- typescript

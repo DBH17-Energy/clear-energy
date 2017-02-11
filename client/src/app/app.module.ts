@@ -32,6 +32,7 @@ import { LastMonthDetailsComponent } from './components/last-month-details/last-
 
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { SourcesMapComponent } from './components/sources-map/sources-map.component';
+import { TransactionsComponent } from './components/transactions/transactions.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { SourcesMapComponent } from './components/sources-map/sources-map.compon
     ConsumptionGreenComponent,
     ConsumptionGreyComponent,
     OverviewCardComponent,
-    SourcesMapComponent
+    SourcesMapComponent,
+    TransactionsComponent
   ],
   imports: [
     MaterialModule.forRoot(),
