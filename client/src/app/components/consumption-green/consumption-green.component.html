@@ -1,0 +1,10 @@
+<div class="donut">
+  <canvas baseChart
+          [data]="greenChartData"
+          [labels]="greenChartLabels"
+          [chartType]="greenChartType"
+          [colors]="backgroundColor"
+          [options]='greenChartOptions'
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"></canvas>
+</div>

@@ -8,6 +8,8 @@ import (
 	"os"
 	"build-chaincode/util"
 	"build-chaincode/entities"
+	"build-chaincode/invokeAndQuery"
+	"strconv"
 )
 
 var logger = shim.NewLogger("fabric-boilerplate")
@@ -36,22 +38,15 @@ func (t *Chaincode) Invoke(stub shim.ChaincodeStubInterface, functionName string
 		return nil, t.addUser(stub, args[0], args[1])
 	} else if functionName == "addTestdata" {
 		return nil, t.addTestdata(stub, args[0])
-	} else if functionName == "createThing" {
-		thingAsJSON := args[0]
-
-		var thing entities.Thing
-		if err := json.Unmarshal([]byte(thingAsJSON), &thing); err != nil {
-			return nil, errors.New("Error while unmarshalling thing, reason: " + err.Error())
-		}
-
-		thingAsBytes, err := json.Marshal(thing);
+	} else if functionName == "addTransaction" {
+		transaction := entities.Transaction{}
+		transactionAsJsonBytes := []byte(args[0])
+		err := json.Unmarshal(transactionAsJsonBytes, &transaction)
 		if err != nil {
-			return nil, errors.New("Error marshalling thing, reason: " + err.Error())
+			return nil, errors.New("Error while unmarshalling transaction")
 		}
 
-		util.StoreObjectInChain(stub, thing.ThingID, util.ThingsIndexName, thingAsBytes)
-
-		return nil, nil
+		return nil, util.StoreObjectInChain(stub, transaction.TransactionID, util.TransactionsIndexName,transactionAsJsonBytes)
 	}
 
 	return nil, errors.New("Received unknown invoke function name")
@@ -87,13 +82,34 @@ func (t *Chaincode) GetQueryResult(stub shim.ChaincodeStubInterface, functionNam
 		}
 
 		return t.authenticateAsUser(stub, user, args[1]), nil
-	} else if functionName == "getThingsByUserID" {
-		thingsByUserID, err := util.GetThingsByUserID(stub, args[0])
+	} else if functionName == "getTransactionsByUserID" {
+		return invokeAndQuery.GetTransactionsByUserID(stub, args[0])
+	} else if functionName == "getTransactions" {
+		return util.GetTransactions(stub)
+	} else if functionName == "getTransactionsByUserIDAndTimeframe" {
+		startDateInMilliseconds, err := strconv.Atoi(args[1])
 		if err != nil {
-			return nil, errors.New("could not retrieve things by user id: " + args[0] + ", reason: " + err.Error())
+			return nil, errors.New("Could not convert startDate to int. Reason: " + err.Error())
 		}
 
-		return thingsByUserID, nil
+		endDateInMilliseconds, err := strconv.Atoi(args[2])
+		if err != nil {
+			return nil, errors.New("Could not convert endDate to int. Reason: " + err.Error())
+		}
+
+		return invokeAndQuery.GetTransactionsByUserIDAndTimeframe(stub, args[0], int64(startDateInMilliseconds), int64(endDateInMilliseconds))
+	} else if functionName == "getTransactionsByTimeframe" {
+		startDateInMilliseconds, err := strconv.Atoi(args[0])
+		if err != nil {
+			return nil, errors.New("Could not convert startDate to int. Reason: " + err.Error())
+		}
+
+		endDateInMilliseconds, err := strconv.Atoi(args[1])
+		if err != nil {
+			return nil, errors.New("Could not convert endDate to int. Reason: " + err.Error())
+		}
+
+		return invokeAndQuery.GetTransactionsByTimeframe(stub, int64(startDateInMilliseconds), int64(endDateInMilliseconds))
 	}
 
 	return nil, errors.New("Received unknown query function name")
@@ -146,7 +162,7 @@ func (t *Chaincode) addTestdata(stub shim.ChaincodeStubInterface, testDataAsJson
 	var testData entities.TestData
 	err := json.Unmarshal([]byte(testDataAsJson), &testData)
 	if err != nil {
-		return errors.New("Error while unmarshalling testdata")
+		return errors.New("Error while unmarshalling testdata, reason:" + err.Error())
 	}
 
 	for _, user := range testData.Users {
@@ -161,13 +177,37 @@ func (t *Chaincode) addTestdata(stub shim.ChaincodeStubInterface, testDataAsJson
 		}
 	}
 
-	for _, thing := range testData.Things {
-		thingAsBytes, err := json.Marshal(thing);
+	for _, transaction := range testData.Transactions {
+		transactionAsBytes, err := json.Marshal(transaction)
 		if err != nil {
-			return errors.New("Error marshalling testThing, reason: " + err.Error())
+			return errors.New("Error marshalling testTransaction, reason: " + err.Error())
 		}
 
-		err = util.StoreObjectInChain(stub, thing.ThingID, util.ThingsIndexName, thingAsBytes)
+		err = util.StoreObjectInChain(stub, transaction.TransactionID, util.TransactionsIndexName, transactionAsBytes)
+		if err != nil {
+			return errors.New("error in storing object, reason: " + err.Error())
+		}
+	}
+
+	for _, device := range testData.Devices {
+		deviceAsBytes, err := json.Marshal(device)
+		if err != nil {
+			return errors.New("Error marshalling testDevice, reason: " + err.Error())
+		}
+
+		err = util.StoreObjectInChain(stub, device.DeviceID, util.DevicesIndexName, deviceAsBytes)
+		if err != nil {
+			return errors.New("error in storing object, reason: " + err.Error())
+		}
+	}
+
+	for _, wallet := range testData.Wallets {
+		walletAsBytes, err := json.Marshal(wallet)
+		if err != nil {
+			return errors.New("Error marshalling testWallet, reason: " + err.Error())
+		}
+
+		err = util.StoreObjectInChain(stub, wallet.WalletID, util.WalletsIndexName, walletAsBytes)
 		if err != nil {
 			return errors.New("error in storing object, reason: " + err.Error())
 		}

@@ -1,0 +1,10 @@
+<p id="sources-map-title">Where does your energy come from?</p>
+<sebm-google-map  [latitude]="lat" [longitude]="lng" [zoom]="7">
+  <sebm-google-map-circle *ngFor="let loc of locations"
+      [latitude]="loc.lat"
+      [longitude]="loc.lng"
+      [radius]="loc.size"
+      [fillColor]="loc.color"
+      [fillOpacity]="0.6">
+  </sebm-google-map-circle>
+</sebm-google-map>

@@ -19,6 +19,8 @@ import {Container} from 'typedi';
 class App {
     public async run(): Promise<void> {
         const logger = new LoggerFactory().create();
+        const fs = require('fs');
+        const https = require('https');
         const blockchain = BlockchainFactory.create(logger, Config.getServerDirectory());
         const chaincodeId = await blockchain.init(DeployPolicy.NEVER);
         logger.debug('[App]', 'Using chaincode id', chaincodeId);
@@ -55,6 +57,14 @@ class App {
             }
         }));
 
+        // Enable CORS
+        // http://stackoverflow.com/questions/11181546/how-to-enable-cross-origin-resource-sharing-cors-in-the-express-js-framework-o
+        app.all('/', (req: any, res: any, next: NextFunction) => {
+            res.header('Access-Control-Allow-Origin', '*');
+            res.header('Access-Control-Allow-Headers', 'X-Requested-With');
+            next();
+        });
+
         // routes
         const expressRouter: Router = express.Router();
         new Routes(blockchainClient, logger).register(expressRouter);
@@ -62,10 +72,20 @@ class App {
 
         const port = (process.env.VCAP_PORT || process.env.PORT || 8080);
         const host = (process.env.VCAP_HOST || process.env.HOST || 'localhost');
-        app.listen(port);
 
-        // print a message when the server starts listening
-        logger.info(`[NodeJS] Express server listening at http://${host}:${port}`);
+        if (fs.existsSync(path.join(__dirname, '../resources/ssl/certificate.pem'))) {
+            logger.info('[NodeJS] Got certificate, starting HTTPS server');
+            var options = {
+                key: fs.readFileSync(path.join(__dirname, '../resources/ssl/private.key')),
+                cert: fs.readFileSync(path.join(__dirname, '../resources/ssl/certificate.pem'))
+            };
+            https.createServer(options, app).listen(port);
+            logger.info(`[NodeJS] Express server listening at https://${host}:${port}`);
+        } else {
+            logger.info('[NodeJS] No certificate at ' + path.join(__dirname, '../resources/ssl/certificate.pem') + ', starting HTTP server');
+            app.listen(port);
+            logger.info(`[NodeJS] Express server listening at http://${host}:${port}`);
+        }
     }
 }
 

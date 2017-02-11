@@ -1,27 +1,247 @@
 {
   "users": [
     {
-      "userID": "john",
-      "username": "john",
+      "userID": "gary",
+      "username": "gary",
       "password": "passw0rd",
+      "role": "consumer",
       "attributes": [
         {
           "name": "userID",
-          "value": "john"
+          "value": "gary"
+        }
+      ]
+    },
+    {
+      "userID": "matt",
+      "username": "matt",
+      "password": "passw0rd",
+      "role": "producer",
+      "attributes": [
+        {
+          "name": "userID",
+          "value": "matt"
+        }
+      ]
+    },
+    {
+      "userID": "charlotte",
+      "username": "charlotte",
+      "password": "passw0rd",
+      "role": "supplier",
+      "attributes": [
+        {
+          "name": "userID",
+          "value": "charlotte"
         }
       ]
     }
   ],
-  "things": [
+  "transactions": [
     {
-      "thingID": "1",
-      "userID": "john",
-      "someProperty": "8716948000003"
+      "id": "tr1",
+      "transactionType": "buy",
+      "sender": {
+        "userID": "gary",
+        "username": "gary",
+        "password": "passw0rd",
+        "role": "consumer",
+        "attributes": [
+          {
+            "name": "userID",
+            "value": "gary"
+          }
+        ]
+      },
+      "receiver": {
+        "userID": "matt",
+        "username": "matt",
+        "password": "passw0rd",
+        "role": "producer",
+        "attributes": [
+          {
+            "name": "userID",
+            "value": "matt"
+          }
+        ]
+      },
+      "eunit": 100.0,
+      "device": {
+        "id": "sp1",
+        "deviceType": "solar panel",
+        "energyType": "solar",
+        "owner": {
+          "userID": "gary",
+          "username": "gary",
+          "password": "passw0rd",
+          "role": "consumer",
+          "attributes": [
+            {
+              "name": "userID",
+              "value": "gary"
+            }
+          ]
+        },
+        "locationX": 53.242642,
+        "locationY": 6.545827,
+        "totalEUnit": 100.0,
+        "totalCo2": 0.0,
+        "co2PerEUnit": 0.0
+      },
+      "etype": "green",
+      "co2": 0.0,
+      "timestamp": 1486813496824
     },
     {
-      "thingID": "2",
-      "userID": "john",
-      "someProperty": "124914266456"
+      "id": "tr2",
+      "transactionType": "sell",
+      "sender": {
+        "userID": "matt",
+        "username": "matt",
+        "password": "passw0rd",
+        "role": "producer",
+        "attributes": [
+          {
+            "name": "userID",
+            "value": "matt"
+          }
+        ]
+      },
+      "receiver": {
+        "userID": "gary",
+        "username": "gary",
+        "password": "passw0rd",
+        "role": "consumer",
+        "attributes": [
+          {
+            "name": "userID",
+            "value": "gary"
+          }
+        ]
+      },
+      "eunit": 2000.0,
+      "device": {
+        "id": "npp1",
+        "deviceType": "nuclear power plant",
+        "energyType": "nuclear",
+        "owner": {
+          "userID": "matt",
+          "username": "matt",
+          "password": "passw0rd",
+          "attributes": [
+            {
+              "name": "userID",
+              "value": "matt"
+            }
+          ]
+        },
+        "locationX": 37.077297,
+        "locationY": 136.762534,
+        "totalEUnit": 10000.0,
+        "totalCo2": 7500.0,
+        "co2PerUnit": 0.75
+      },
+      "etype": "grey",
+      "co2": 1.0,
+      "timestamp": 1486813627996
+    }
+  ],
+  "devices": [
+    {
+      "id": "sp1",
+      "deviceType": "solar panel",
+      "energyType": "solar",
+      "owner": {
+        "userID": "gary",
+        "username": "gary",
+        "password": "passw0rd",
+        "role": "consumer",
+        "attributes": [
+          {
+            "name": "userID",
+            "value": "gary"
+          }
+        ]
+      },
+      "locationX": 53.242642,
+      "locationY": 6.545827,
+      "totalEUnit": 100.0,
+      "totalCo2": 0.0,
+      "co2PerEUnit": 0.0
+    },
+    {
+      "id": "npp1",
+      "deviceType": "nuclear power plant",
+      "energyType": "nuclear",
+      "owner": {
+        "userID": "matt",
+        "username": "matt",
+        "password": "passw0rd",
+        "attributes": [
+          {
+            "name": "userID",
+            "value": "matt"
+          }
+        ]
+      },
+      "locationX": 37.077297,
+      "locationY": 136.762534,
+      "totalEUnit": 10000.0,
+      "totalCo2": 7500.0,
+      "co2PerUnit": 0.75
+    }
+  ],
+  "wallets": [
+    {
+      "id": "wal1",
+      "owner": {
+        "userID": "gary",
+        "username": "gary",
+        "password": "passw0rd",
+        "role": "consumer",
+        "attributes": [
+          {
+            "name": "userID",
+            "value": "gary"
+          }
+        ]
+      },
+      "totalEUnit": 100.0,
+      "totalCo2": 0.0
+    },
+    {
+      "id": "wal2",
+      "owner": {
+        "userID": "matt",
+        "username": "matt",
+        "password": "passw0rd",
+        "role": "producer",
+        "attributes": [
+          {
+            "name": "userID",
+            "value": "matt"
+          }
+        ]
+      },
+      "totalEUnit": 1000.0,
+      "totalCo2": 750.0
+    },
+    {
+      "id": "wal3",
+      "owner": {
+        "userID": "charlotte",
+        "username": "charlotte",
+        "password": "passw0rd",
+        "role": "supplier",
+        "attributes": [
+          {
+            "name": "userID",
+            "value": "charlotte"
+          }
+        ]
+      },
+      "totalEUnit": 1000.0,
+      "totalCo2": 750.0
     }
   ]
 }

@@ -1,0 +1,36 @@
+.consumption-details{
+  color: #2d3339;
+}
+
+.consumption-details b{
+  color: #2d3339;
+}
+
+.consumption-details span{
+  color: #2d3339;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.consumption-details h1{
+  font-size: x-large;
+  color: #33dabd;
+}
+
+.consumption-details button{
+  background-color: #2d3339;
+}
+
+#consumption-progress {
+  border-radius: 25px;
+  width: 100%;
+  height: 15px;
+  background-color: #e0e0e0;
+}
+#consumption-progress-bar {
+  border-bottom-left-radius: 25px;
+  border-top-left-radius: 25px;
+  width: 42%;
+  height: 100%;
+  background-color: #33dabd;
+}
+

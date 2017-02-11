@@ -16,32 +16,6 @@ func GetCurrentBlockchainUser(stub shim.ChaincodeStubInterface) (entities.User, 
 	return GetUser(stub, string(userIDAsBytes))
 }
 
-func GetThingsByUserID(stub shim.ChaincodeStubInterface, userID string) ([]string, error) {
-	thingsIndex, err := GetIndex(stub, ThingsIndexName)
-	if err != nil {
-		return []string{}, errors.New("Unable to retrieve thingsIndex, reason: " + err.Error())
-	}
-
-	thingIDs := []string{}
-	for _, thingID := range thingsIndex {
-		thingAsBytes, err := stub.GetState(thingID)
-		if err != nil {
-			return []string{}, errors.New("Could not retrieve thing for ID " + thingID + " reason: " + err.Error())
-		}
-
-		var thing entities.Thing
-		err = json.Unmarshal(thingAsBytes, &thing)
-		if err != nil {
-			return []string{}, errors.New("Error while unmarshalling thingAsBytes, reason: " + err.Error())
-		}
-
-		if thing.UserID == userID {
-			thingIDs = append(thingIDs, thing.ThingID)
-		}
-	}
-
-	return thingIDs, nil
-}
 
 func GetUser(stub shim.ChaincodeStubInterface, username string) (entities.User, error) {
 	userAsBytes, err := stub.GetState(username)
@@ -80,4 +54,29 @@ func GetAllUsers(stub shim.ChaincodeStubInterface) ([]entities.User, error) {
 	}
 
 	return users, nil
+}
+
+func GetTransactions(stub shim.ChaincodeStubInterface) ([]entities.Transaction, error) {
+	transactionsIndex, err := GetIndex(stub, TransactionsIndexName)
+	if err != nil {
+		return []entities.Transaction{}, errors.New("Could not retrieve transactionIndex, reason: " + err.Error())
+	}
+
+	var transactions []entities.Transaction
+	for _, transactionID := range transactionsIndex {
+		transactionAsBytes, err := stub.GetState(transactionID)
+		if err != nil {
+			return []entities.Transaction{}, errors.New("Could not retrieve transaction with ID: " + transactionID + ", reason: " + err.Error())
+		}
+
+		var transaction entities.Transaction
+		err = json.Unmarshal(transactionAsBytes, &transaction)
+		if err != nil {
+			return []entities.Transaction{}, errors.New("Error while unmarshalling transaction, reason: " + err.Error())
+		}
+
+		transactions = append(transactions, transaction)
+	}
+
+	return transactions, nil
 }
