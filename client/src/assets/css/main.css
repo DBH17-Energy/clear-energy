@@ -3216,7 +3216,7 @@
 			}
 
 		#main .features {
-			background-color: #32383f;
+			background-color: #FFFFFF;
 		}
 
 			#main .features .content {
@@ -3232,7 +3232,7 @@
 
 				#main .features .content .feature {
 					padding: 4em 3em 2em 3em ;
-					width: 33.333333333%;
+					width: 50%;
 					border-style: solid;
 					border-color: #434b55;
 					border-left-width: 1px;

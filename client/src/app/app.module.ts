@@ -19,8 +19,11 @@ import { GeneralConsumptionComponent } from './components/general-consumption/ge
 
 import { ChartsModule } from 'ng2-charts';
 import { MaterialModule } from '@angular/material';
+import { FlexLayoutModule } from "@angular/flex-layout";
+
 import { ConsumptionCardComponent } from './components/consumption-card/consumption-card.component';
 import { ConsumptionTextComponent } from './components/consumption-text/consumption-text.component';
+import { ConsumptionDetailsComponent } from './components/consumption-details/consumption-details.component';
 
 
 @NgModule({
@@ -32,10 +35,12 @@ import { ConsumptionTextComponent } from './components/consumption-text/consumpt
     DashboardComponent,
     GeneralConsumptionComponent,
     ConsumptionCardComponent,
-    ConsumptionTextComponent
+    ConsumptionTextComponent,
+    ConsumptionDetailsComponent
   ],
   imports: [
     MaterialModule.forRoot(),
+    FlexLayoutModule.forRoot(),
     BrowserModule,
     FormsModule,
     HttpModule,
