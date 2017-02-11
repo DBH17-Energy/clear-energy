@@ -5,7 +5,15 @@ exclude:
 - /server/gruntfile.js
 component_depth: 1
 languages:
-- go
-- javascript
-- script
-- typescript
+- name: go
+  test:
+    include:
+    - .*_test\.go
+- name: javascript
+- name: script
+- name: typescript
+  test:
+    include:
+    - .*\.spec\.ts
+    - .*api\.ts
+    - .*test\.ts
