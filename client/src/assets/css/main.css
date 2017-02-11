@@ -2338,8 +2338,9 @@
 		}
 
 			ul.contact li {
+        float: left;
 				text-decoration: none;
-				padding: 0.65em 0 0 0;
+        font-size: 2em;
 			}
 
 				ul.contact li:before {
