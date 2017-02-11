@@ -10,12 +10,14 @@ import {AuthGuard} from './guards/index';
 import {AppComponent} from './app.component';
 import {LoginComponent} from './components/login/login.component';
 import {ThingsComponent} from './components/things/things.component';
-
-import {ThingService} from './services/thing.service'
-import {AuthenticationService} from './services/authentication.service'
 import {LogoutComponent} from "./components/logout/logout.component";
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { GeneralConsumptionComponent } from './components/general-consumption/general-consumption.component';
+
+import {ThingService} from './services/thing.service';
+import {AuthenticationService} from './services/authentication.service';
+import {TransactionService} from './services/transaction.service';
+
 
 import { ChartsModule } from 'ng2-charts';
 import { MaterialModule } from '@angular/material';
@@ -65,7 +67,8 @@ import { SourcesMapComponent } from './components/sources-map/sources-map.compon
     Configuration,
     AuthenticationService,
     AuthGuard,
-    ThingService
+    ThingService,
+    TransactionService
   ],
   bootstrap: [AppComponent]
 })
