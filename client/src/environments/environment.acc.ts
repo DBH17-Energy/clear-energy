@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://clear-energy.nl:8443'
+  apiUrl: 'https://clear-energy.nl:8443/'
 };
