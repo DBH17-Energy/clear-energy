@@ -28,6 +28,8 @@ import { ConsumptionGreyComponent } from './components/consumption-grey/consumpt
 import { OverviewCardComponent } from './components/overview-card/overview-card.component';
 import { LastMonthDetailsComponent } from './components/last-month-details/last-month-details.component';
 
+import { AgmCoreModule } from 'angular2-google-maps/core';
+import { SourcesMapComponent } from './components/sources-map/sources-map.component';
 
 @NgModule({
   declarations: [
@@ -44,10 +46,14 @@ import { LastMonthDetailsComponent } from './components/last-month-details/last-
     ConsumptionDetailsComponent,
     ConsumptionGreenComponent,
     ConsumptionGreyComponent,
-    OverviewCardComponent
+    OverviewCardComponent,
+    SourcesMapComponent
   ],
   imports: [
     MaterialModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBVOVi33dg84fegdpXRABniFqnIO3FzUfI'
+    }),
     BrowserModule,
     FormsModule,
     HttpModule,
