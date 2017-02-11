@@ -18,6 +18,7 @@ type TestDataElement interface {
 type User struct {
 	TestDataElement `json:"-"`
 	UserID   string `json:"userID"`
+	Role     string `json:"role"`
 	Username string `json:"username"`
 	Password string `json:"password"`
 	Salt     string `json:"salt"`
@@ -26,22 +27,23 @@ type User struct {
 
 type Transaction struct {
 	TestDataElement `json:"-"`
-	TransactionID string `json:"id"`
-	Sender        User `json:"sender"`
-	Receiver      User `json:"receiver"`
-	EUnit         float32 `json:"eunit"`
-	Device        Device `json:"device"`
-	EType         string `json:"etype"`
-	CO2           float32 `json:"co2"`
-	Timestamp     int64 `json:"timestamp"`
+	TransactionID   string  `json:"id"`
+	TransactionType string  `json:"transactionType"`
+	Sender          User    `json:"sender"`
+	Receiver        User    `json:"receiver"`
+	EUnit           float32 `json:"eunit"`
+	Device          Device  `json:"device"`
+	EType           string  `json:"etype"`
+	CO2             float32 `json:"co2"`
+	Timestamp       int64   `json:"timestamp"`
 }
 
 type Device struct {
 	TestDataElement `json:"-"`
-	DeviceID    string `json:"id"`
-	DeviceType  string `json:"deviceType"`
-	EnergyType  string `json:"energyType"`
-	Owner       User `json:"owner"`
+	DeviceID    string  `json:"id"`
+	DeviceType  string  `json:"deviceType"`
+	EnergyType  string  `json:"energyType"`
+	Owner       User    `json:"owner"`
 	LocationX   float32 `json:"locationX"`
 	LocationY   float32 `json:"locationY"`
 	TotalEUnit  float32 `json:"totalEUnit"`
@@ -51,8 +53,8 @@ type Device struct {
 
 type Wallet struct {
 	TestDataElement `json:"-"`
-	WalletID   string `json:"id"`
-	Owner      User `json:"owner"`
+	WalletID   string  `json:"id"`
+	Owner      User    `json:"owner"`
 	TotalEUnit float32 `json:"totalEUnit"`
 	TotalCO2   float32 `json:"totalCo2"`
 }

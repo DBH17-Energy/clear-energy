@@ -8,6 +8,8 @@ import (
 	"os"
 	"build-chaincode/util"
 	"build-chaincode/entities"
+	"build-chaincode/invokeAndQuery"
+	"strconv"
 )
 
 var logger = shim.NewLogger("fabric-boilerplate")
@@ -71,6 +73,34 @@ func (t *Chaincode) GetQueryResult(stub shim.ChaincodeStubInterface, functionNam
 		}
 
 		return t.authenticateAsUser(stub, user, args[1]), nil
+	} else if functionName == "getTransactionsByUserID" {
+		return invokeAndQuery.GetTransactionsByUserID(stub, args[0])
+	} else if functionName == "getTransactions" {
+		return util.GetTransactions(stub)
+	} else if functionName == "getTransactionsByUserIDAndTimeframe" {
+		startDateInMilliseconds, err := strconv.Atoi(args[1])
+		if err != nil {
+			return nil, errors.New("Could not convert startDate to int. Reason: " + err.Error())
+		}
+
+		endDateInMilliseconds, err := strconv.Atoi(args[2])
+		if err != nil {
+			return nil, errors.New("Could not convert endDate to int. Reason: " + err.Error())
+		}
+
+		return invokeAndQuery.GetTransactionsByUserIDAndTimeframe(stub, args[0], int64(startDateInMilliseconds), int64(endDateInMilliseconds))
+	} else if functionName == "getTransactionsByTimeframe" {
+		startDateInMilliseconds, err := strconv.Atoi(args[1])
+		if err != nil {
+			return nil, errors.New("Could not convert startDate to int. Reason: " + err.Error())
+		}
+
+		endDateInMilliseconds, err := strconv.Atoi(args[2])
+		if err != nil {
+			return nil, errors.New("Could not convert endDate to int. Reason: " + err.Error())
+		}
+
+		return invokeAndQuery.GetTransactionsByTimeframe(stub, int64(startDateInMilliseconds), int64(endDateInMilliseconds))
 	}
 
 	return nil, errors.New("Received unknown query function name")
@@ -123,7 +153,7 @@ func (t *Chaincode) addTestdata(stub shim.ChaincodeStubInterface, testDataAsJson
 	var testData entities.TestData
 	err := json.Unmarshal([]byte(testDataAsJson), &testData)
 	if err != nil {
-		return errors.New("Error while unmarshalling testdata, reason:"+err.Error())
+		return errors.New("Error while unmarshalling testdata, reason:" + err.Error())
 	}
 
 	for _, user := range testData.Users {
