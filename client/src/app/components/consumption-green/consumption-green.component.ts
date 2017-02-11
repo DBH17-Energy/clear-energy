@@ -6,11 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./consumption-green.component.css']
 })
 export class ConsumptionGreenComponent implements OnInit {
-  // Doughnut
-  public doughnutChartLabels:string[] = ['Green', 'Grey'];
-  public doughnutChartData:number[] = [65, 35];
-  public doughnutChartType:string = 'doughnut';
-  public backgroundColor:any = [{backgroundColor: ["#33dabd", "#9575cd"]}];
+  // barchart
+  public greenChartLabels:string[] = ['Solar', 'Wind', 'hydro'];
+  public greenChartData:number[] = [55, 40, 5];
+  public greenChartType:string = 'doughnut';  //'horizontalBar';
+
+  // didn't get the barcharts working
+  //public greenChartOptions:string = JSON.stringify({responsive: true,
+  //  scales: {yAxes: {display: true, ticks: {beginAtZero: true, max: 100}}
+  //  }});
+
+
+  public backgroundColor:any = {backgroundColor: ["#33dabd", "#9575cd"]};
 
   // events
   public chartClicked(e:any):void {

@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConsumptionGreyComponent implements OnInit {
   // Doughnut
-  public doughnutChartLabels:string[] = ['Green', 'Grey'];
-  public doughnutChartData:number[] = [65, 35];
-  public doughnutChartType:string = 'doughnut';
+  public greyChartLabels:string[] = ['Nuclear', 'Coal'];
+  public greyChartData:number[] = [65, 35];
+  public greyChartType:string = 'doughnut';
+  //public greyChartOptions:any = [{responsive: true,
+  //                                scales: {xAxes: [{display: true, scaleLabel: {display: true, labelString: 'Month'}}],
+  //                                         yAxes: [{display: true, ticks: {beginAtZero: true, steps: 10, stepValue: 5, max: 100}}]
+  //                              }}];
   public backgroundColor:any = [{backgroundColor: ["#33dabd", "#9575cd"]}];
 
   // events
