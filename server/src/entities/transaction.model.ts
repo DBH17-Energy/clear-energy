@@ -10,9 +10,9 @@ export class Transaction {
     private _device: Device;
     private _etype: string;
     private _co2: number;
-    private _timeframe: number;
+    private _timestamp: number;
 
-    constructor(id: string, sender: User, receiver: User, eunit: number, device: Device, etype: string, co2: number, timeframe: number) {
+    constructor(id: string, sender: User, receiver: User, eunit: number, device: Device, etype: string, co2: number, timestamp: number) {
         this._id = id;
         this._sender = sender;
         this._receiver = receiver;
@@ -20,7 +20,7 @@ export class Transaction {
         this._device = device;
         this._etype = etype;
         this._co2 = co2;
-        this._timeframe = timeframe;
+        this._timestamp = timestamp;
     }
 
     public get id(): string {
@@ -51,8 +51,8 @@ export class Transaction {
         return this._co2;
     }
 
-    public get timeframe(): number {
-        return this._timeframe;
+    public get timestamp(): number {
+        return this._timestamp;
     }
 
  
@@ -65,7 +65,7 @@ export class Transaction {
             'device': this.device,
             'etype': this.etype,
             'co2': this.co2,
-            'timeframe': this.timeframe,
+            'timestamp': this.timestamp,
         };
     }
 }

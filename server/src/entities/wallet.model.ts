@@ -1,6 +1,5 @@
 'use strict';
 import {User} from "./user.model";
-import {Device} from "./device.model";
 
 export class Wallet {
     private _id: string;
