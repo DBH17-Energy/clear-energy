@@ -14,7 +14,7 @@ import {ThingsComponent} from './components/things/things.component';
 import {ThingService} from './services/thing.service'
 import {AuthenticationService} from './services/authentication.service'
 import {LogoutComponent} from "./components/logout/logout.component";
-import {HomeComponent} from './components/home/home.component'
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import {HomeComponent} from './components/home/home.component'
     LoginComponent,
     ThingsComponent,
     LogoutComponent,
-    HomeComponent
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
