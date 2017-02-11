@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConsumptionDetailsComponent implements OnInit {
 
+  public dateLong:string = Date().toString();
+
   constructor() { }
 
   ngOnInit() {
