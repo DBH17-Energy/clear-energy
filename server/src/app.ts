@@ -36,7 +36,7 @@ class App {
             next();
         });
 
-        //app.use(cors());
+        app.use(cors());
 
         // Enable CORS
         // http://stackoverflow.com/questions/11181546/how-to-enable-cross-origin-resource-sharing-cors-in-the-express-js-framework-o
