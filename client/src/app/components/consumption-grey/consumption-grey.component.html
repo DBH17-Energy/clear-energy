@@ -1,10 +1,20 @@
-<div class="donut">
-  <canvas baseChart
-          [data]="greyChartData"
-          [labels]="greyChartLabels"
-          [chartType]="greyChartType"
-          [colors]="backgroundColor"
-          [options]="greyChartOptions"
-          (chartHover)="chartHovered($event)"
-          (chartClick)="chartClicked($event)"></canvas>
+<div class="row uniform">
+  <h2><b style="color:#000000">Grey energy sources</b></h2>
+  <div class="9u 12u$(xsmall)">
+    <div class="donut">
+    <canvas baseChart
+            [data]="greyChartData"
+            [labels]="greyChartLabels"
+            [chartType]="greyChartType"
+            [colors]="backgroundColor"
+            [options]="greyChartOptions"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+    </div>
+  </div>
+  <div class="9u 12u$(xsmall)">
+    <div class="consumption-text">
+      <p><b style="color:#000000">   CO2 saved:</b><b style="color:#AD95D8"> {{greyco}} g</b></p>
+    </div>
+  </div>
 </div>

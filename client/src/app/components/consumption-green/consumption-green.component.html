@@ -1,10 +1,20 @@
-<div class="donut">
-  <canvas baseChart
-          [data]="greenChartData"
-          [labels]="greenChartLabels"
-          [chartType]="greenChartType"
-          [colors]="backgroundColor"
-          [options]='greenChartOptions'
-          (chartHover)="chartHovered($event)"
-          (chartClick)="chartClicked($event)"></canvas>
+<div class="row uniform">
+  <h2><b style="color:#000000">Green energy sources</b></h2>
+  <div class="9u 12u$(xsmall)">
+    <div class="donut">
+      <canvas baseChart
+              [data]="greenChartData"
+              [labels]="greenChartLabels"
+              [chartType]="greenChartType"
+              [colors]="backgroundColor"
+              [options]='greenChartOptions'
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+    </div>
+  </div>
+  <div class="9u 12u$(xsmall)">
+    <div class="consumption-text">
+      <p><b style="color:#000000">   CO2 saved:</b><b style="color:#02D9AD"> {{greenco}} g</b></p>
+    </div>
+  </div>
 </div>
