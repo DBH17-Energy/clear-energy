@@ -1,13 +1,14 @@
 {
   "users": [
     {
-      "userID": "john",
-      "username": "john",
+      "userID": "gary",
+      "username": "gary",
       "password": "passw0rd",
+      "role": "consumer",
       "attributes": [
         {
           "name": "userID",
-          "value": "john"
+          "value": "gary"
         }
       ]
     },
@@ -15,10 +16,23 @@
       "userID": "matt",
       "username": "matt",
       "password": "passw0rd",
+      "role": "producer",
       "attributes": [
         {
           "name": "userID",
           "value": "matt"
+        }
+      ]
+    },
+    {
+      "userID": "charlotte",
+      "username": "charlotte",
+      "password": "passw0rd",
+      "role": "supplier",
+      "attributes": [
+        {
+          "name": "userID",
+          "value": "charlotte"
         }
       ]
     }
@@ -26,14 +40,16 @@
   "transactions": [
     {
       "id": "tr1",
+      "transactionType": "buy",
       "sender": {
-        "userID": "john",
-        "username": "john",
+        "userID": "gary",
+        "username": "gary",
         "password": "passw0rd",
+        "role": "consumer",
         "attributes": [
           {
             "name": "userID",
-            "value": "john"
+            "value": "gary"
           }
         ]
       },
@@ -41,6 +57,7 @@
         "userID": "matt",
         "username": "matt",
         "password": "passw0rd",
+        "role": "producer",
         "attributes": [
           {
             "name": "userID",
@@ -54,13 +71,14 @@
         "deviceType": "solar panel",
         "energyType": "solar",
         "owner": {
-          "userID": "john",
-          "username": "john",
+          "userID": "gary",
+          "username": "gary",
           "password": "passw0rd",
+          "role": "consumer",
           "attributes": [
             {
               "name": "userID",
-              "value": "john"
+              "value": "gary"
             }
           ]
         },
@@ -76,10 +94,12 @@
     },
     {
       "id": "tr2",
+      "transactionType": "sell",
       "sender": {
         "userID": "matt",
         "username": "matt",
         "password": "passw0rd",
+        "role": "producer",
         "attributes": [
           {
             "name": "userID",
@@ -88,13 +108,14 @@
         ]
       },
       "receiver": {
-        "userID": "john",
-        "username": "john",
+        "userID": "gary",
+        "username": "gary",
         "password": "passw0rd",
+        "role": "consumer",
         "attributes": [
           {
             "name": "userID",
-            "value": "john"
+            "value": "gary"
           }
         ]
       },
@@ -131,13 +152,14 @@
       "deviceType": "solar panel",
       "energyType": "solar",
       "owner": {
-        "userID": "john",
-        "username": "john",
+        "userID": "gary",
+        "username": "gary",
         "password": "passw0rd",
+        "role": "consumer",
         "attributes": [
           {
             "name": "userID",
-            "value": "john"
+            "value": "gary"
           }
         ]
       },
@@ -169,17 +191,18 @@
       "co2PerUnit": 0.75
     }
   ],
-  "wallets":[
+  "wallets": [
     {
       "id": "wal1",
       "owner": {
-        "userID": "john",
-        "username": "john",
+        "userID": "gary",
+        "username": "gary",
         "password": "passw0rd",
+        "role": "consumer",
         "attributes": [
           {
             "name": "userID",
-            "value": "john"
+            "value": "gary"
           }
         ]
       },
@@ -192,10 +215,28 @@
         "userID": "matt",
         "username": "matt",
         "password": "passw0rd",
+        "role": "producer",
         "attributes": [
           {
             "name": "userID",
             "value": "matt"
+          }
+        ]
+      },
+      "totalEUnit": 1000.0,
+      "totalCo2": 750.0
+    },
+    {
+      "id": "wal3",
+      "owner": {
+        "userID": "charlotte",
+        "username": "charlotte",
+        "password": "passw0rd",
+        "role": "supplier",
+        "attributes": [
+          {
+            "name": "userID",
+            "value": "charlotte"
           }
         ]
       },
