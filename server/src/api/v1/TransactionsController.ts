@@ -19,7 +19,7 @@ export class TransactionsController {
         return request.blockchain.query('getTransactionsByUserID', [userID], enrollmentID);
     }
 
-    @Get('/:id/:startTime-:endTime')
+    @Get('/:id/:startTime/:endTime')
     public getTransactionsByUserIDAndByTimeframe(@Param('id') userID: string, @Param('startTime') startTime: number, @Param('endTime') endTime: number, @Req() request: any): any {
         let enrollmentID = new JSONWebToken(request).getUserID();
 
@@ -33,7 +33,7 @@ export class TransactionsController {
         return request.blockchain.query('getTransactions', [], enrollmentID);
     }
 
-    @Get('/:startTime-:endTime')
+    @Get('?startTime=:startTime&endTime=:endTime')
     public getTransactionsByTimeframe(@Param('startTime') startTime: number, @Param('endTime') endTime: number, @Req() request: any): any {
         let enrollmentID = new JSONWebToken(request).getUserID();
 

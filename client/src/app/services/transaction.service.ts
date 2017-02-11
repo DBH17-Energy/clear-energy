@@ -5,6 +5,17 @@ import 'rxjs/add/operator/map';
 import {Configuration} from '../app.constants';
 import {AuthenticationService} from './authentication.service'
 
+
+let encodeQueryData = (data: any): string => {
+  let ret = [];
+
+  for (let d of Object.keys(data)) {
+    ret.push(encodeURIComponent(d) + '=' + encodeURIComponent(data[d]));
+  }
+
+  return ret.join('&');
+}
+
 @Injectable()
 export class TransactionService {
   private actionUrl: string;
@@ -17,15 +28,18 @@ export class TransactionService {
     this.headers = _authenticationService.createAuthorizationHeader();
   }
 
-  public getAllTransactions() {
+  public getTransactions() {
     return this._http
       .get(this.actionUrl + '/', {headers: this.headers})
       .map(res => res.json());
   }
 
-  public getAllTransactionsByTimeframe(startTime: number, endTime: number) {
+  public getTransactionsByTimeframe(startTime: number, endTime: number) {
     return this._http
-      .get(this.actionUrl + '/' + startTime + '/' + endTime, {headers: this.headers})
+      .get(this.actionUrl + '?' + encodeQueryData({
+          'startTime': startTime,
+          'endTime': startTime,
+        }), {headers: this.headers})
       .map(res => res.json());
   }
 }
