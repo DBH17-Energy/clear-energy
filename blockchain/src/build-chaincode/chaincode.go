@@ -38,6 +38,15 @@ func (t *Chaincode) Invoke(stub shim.ChaincodeStubInterface, functionName string
 		return nil, t.addUser(stub, args[0], args[1])
 	} else if functionName == "addTestdata" {
 		return nil, t.addTestdata(stub, args[0])
+	} else if functionName == "addTransaction" {
+		transaction := entities.Transaction{}
+		transactionAsJsonBytes := []byte(args[0])
+		err := json.Unmarshal(transactionAsJsonBytes, &transaction)
+		if err != nil {
+			return nil, errors.New("Error while unmarshalling transaction")
+		}
+
+		return nil, util.StoreObjectInChain(stub, transaction.TransactionID, util.TransactionsIndexName,transactionAsJsonBytes)
 	}
 
 	return nil, errors.New("Received unknown invoke function name")
@@ -90,12 +99,12 @@ func (t *Chaincode) GetQueryResult(stub shim.ChaincodeStubInterface, functionNam
 
 		return invokeAndQuery.GetTransactionsByUserIDAndTimeframe(stub, args[0], int64(startDateInMilliseconds), int64(endDateInMilliseconds))
 	} else if functionName == "getTransactionsByTimeframe" {
-		startDateInMilliseconds, err := strconv.Atoi(args[1])
+		startDateInMilliseconds, err := strconv.Atoi(args[0])
 		if err != nil {
 			return nil, errors.New("Could not convert startDate to int. Reason: " + err.Error())
 		}
 
-		endDateInMilliseconds, err := strconv.Atoi(args[2])
+		endDateInMilliseconds, err := strconv.Atoi(args[1])
 		if err != nil {
 			return nil, errors.New("Could not convert endDate to int. Reason: " + err.Error())
 		}

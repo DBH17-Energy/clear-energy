@@ -1,6 +1,5 @@
 import {Get, Post, JsonController, Param, Body, Req, UseBefore} from 'routing-controllers';
 import {JSONWebToken} from '../../utils/JSONWebToken';
-import {Transaction} from '../../entities/transaction.model';
 import {UserAuthenticatorMiddleware} from '../../middleware/UserAuthenticatorMiddleware';
 import {CORSMiddleware} from '../../middleware/CORSMiddleware';
 import {LoggerFactory} from '../../utils/LoggerFactory';
@@ -20,10 +19,10 @@ export class TransactionsController {
     }
 
     @Get('/:id/:startTime/:endTime')
-    public getTransactionsByUserIDAndByTimeframe(@Param('id') userID: string, @Param('startTime') startTime: number, @Param('endTime') endTime: number, @Req() request: any): any {
+    public getTransactionsByUserIDAndByTimeframe(@Param('id') userID: string, @Param('startTime') startTime: string, @Param('endTime') endTime: string, @Req() request: any): any {
         let enrollmentID = new JSONWebToken(request).getUserID();
 
-        return request.blockchain.query('getTransactionsByUserIDAndByTimeframe', [userID, startTime, endTime], enrollmentID);
+        return request.blockchain.query('getTransactionsByUserIDAndTimeframe', [userID, startTime, endTime], enrollmentID);
     }
 
     @Get('/')
@@ -33,17 +32,17 @@ export class TransactionsController {
         return request.blockchain.query('getTransactions', [], enrollmentID);
     }
 
-    @Get('?startTime=:startTime&endTime=:endTime')
-    public getTransactionsByTimeframe(@Param('startTime') startTime: number, @Param('endTime') endTime: number, @Req() request: any): any {
+    @Get('/:startTime/:endTime')
+    public getTransactionsByTimeframe(@Param('startTime') startTime: string, @Param('endTime') endTime: string, @Req() request: any): any {
         let enrollmentID = new JSONWebToken(request).getUserID();
 
         return request.blockchain.query('getTransactionsByTimeframe', [startTime, endTime], enrollmentID);
     }
 
-    @Post('/')
-    public post(@Body() transaction: Transaction, @Req() request: any): any {
+    @Post('/create')
+    public post(@Body() transactionAsJSON: JSON, @Req() request: any): any {
         let enrollmentID = new JSONWebToken(request).getUserID();
 
-        return request.blockchain.invoke('createTransaction', [JSON.stringify(transaction)], enrollmentID);
+        return request.blockchain.invoke('addTransaction', [JSON.stringify(transactionAsJSON)], enrollmentID);
     }
 }
