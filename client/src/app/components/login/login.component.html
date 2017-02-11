@@ -1,15 +1,29 @@
+<!-- Main -->
+<div id="main">
 
-  <div class="row uniform">
-    <div class="6u 12u$(xsmall)">
-      <input type="text" placeholder="Username" autofocus [(ngModel)]="username">
-    </div>
-    <div class="6u$ 12u$(xsmall)">
-      <input type="password" placeholder="Password" [(ngModel)]="password">
-    </div>
-    <div class="12u$">
-      <ul class="actions">
-        <li><button (click)="login(username, password)">Submit</button></li>
-      </ul>
-    </div>
-  </div>
+  <!-- Banner -->
+  <section id="banner">
+    <header>
+      <h2>Log In to the Clear-Energy portal</h2>
+      <p>Enter the credentials you have been provided <br /> Or use:<p>
+      <pre>john : passw0rd</pre>
+    </header>
 
+    <footer>
+
+      <div class="row uniform">
+        <div class="5u 12u$(xsmall)">
+          <input type="text" placeholder="Username" autofocus [(ngModel)]="username">
+        </div>
+        <div class="5u 12u$(xsmall)">
+          <input type="password" placeholder="Password" [(ngModel)]="password">
+        </div>
+        <div class="2u$ 12u$(xsmall)">
+          <input type="submit" (click)="login(username, password)">
+        </div>
+      </div>
+
+    </footer>
+  </section>
+
+</div>

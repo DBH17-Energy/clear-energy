@@ -1,7 +1,21 @@
 
-<div *ngFor="let thing of things">
-    <div>
-        ThingID: {{thing}}
+<!-- Main -->
+<div id="main">
+
+  <section id="things" class="spotlight">
+    <div class="image">
+      <img src="images/pic01.jpg" alt="">
     </div>
+    <div class="content">
+      <h2>This is the dashboard</h2>
+      <p>Here you get information on all your things...</p>
+      <ul *ngFor="let thing of things">
+        <li>ThingID: {{thing}}</li>
+      </ul>
+    </div>
+  </section>
+
+
 </div>
-<app-logout></app-logout>
+
+
