@@ -36,7 +36,15 @@ class App {
             next();
         });
 
-        app.use(cors());
+        //app.use(cors());
+
+        // Enable CORS
+        // http://stackoverflow.com/questions/11181546/how-to-enable-cross-origin-resource-sharing-cors-in-the-express-js-framework-o
+        app.all('/', (req: any, res: any, next: NextFunction) => {
+            res.header('Access-Control-Allow-Origin', '*');
+            res.header('Access-Control-Allow-Headers', 'X-Requested-With');
+            next();
+        });
 
         useContainer(Container);
         // initialize routing
@@ -56,14 +64,6 @@ class App {
                 }
             }
         }));
-
-        // Enable CORS
-        // http://stackoverflow.com/questions/11181546/how-to-enable-cross-origin-resource-sharing-cors-in-the-express-js-framework-o
-        app.all('/', (req: any, res: any, next: NextFunction) => {
-            res.header('Access-Control-Allow-Origin', '*');
-            res.header('Access-Control-Allow-Headers', 'X-Requested-With');
-            next();
-        });
 
         // routes
         const expressRouter: Router = express.Router();
