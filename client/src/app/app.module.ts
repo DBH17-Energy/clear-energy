@@ -23,6 +23,9 @@ import { MaterialModule } from '@angular/material';
 import { ConsumptionCardComponent } from './components/consumption-card/consumption-card.component';
 import { ConsumptionTextComponent } from './components/consumption-text/consumption-text.component';
 import { ConsumptionDetailsComponent } from './components/consumption-details/consumption-details.component';
+import { ConsumptionGreenComponent } from './components/consumption-green/consumption-green.component';
+import { ConsumptionGreyComponent } from './components/consumption-grey/consumption-grey.component';
+import { OverviewCardComponent } from './components/overview-card/overview-card.component';
 import { LastMonthDetailsComponent } from './components/last-month-details/last-month-details.component';
 
 
@@ -37,7 +40,11 @@ import { LastMonthDetailsComponent } from './components/last-month-details/last-
     ConsumptionCardComponent,
     ConsumptionTextComponent,
     ConsumptionDetailsComponent,
-    LastMonthDetailsComponent
+    LastMonthDetailsComponent,
+    ConsumptionDetailsComponent,
+    ConsumptionGreenComponent,
+    ConsumptionGreyComponent,
+    OverviewCardComponent
   ],
   imports: [
     MaterialModule.forRoot(),
