@@ -23,6 +23,7 @@ import { MaterialModule } from '@angular/material';
 import { ConsumptionCardComponent } from './components/consumption-card/consumption-card.component';
 import { ConsumptionTextComponent } from './components/consumption-text/consumption-text.component';
 import { ConsumptionDetailsComponent } from './components/consumption-details/consumption-details.component';
+import { LastMonthDetailsComponent } from './components/last-month-details/last-month-details.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { ConsumptionDetailsComponent } from './components/consumption-details/co
     GeneralConsumptionComponent,
     ConsumptionCardComponent,
     ConsumptionTextComponent,
-    ConsumptionDetailsComponent
+    ConsumptionDetailsComponent,
+    LastMonthDetailsComponent
   ],
   imports: [
     MaterialModule.forRoot(),

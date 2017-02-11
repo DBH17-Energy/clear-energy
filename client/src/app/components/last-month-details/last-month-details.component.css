@@ -1,0 +1,25 @@
+.mini-donut {
+  display: block;
+  background: #FFFFFF;
+  padding: 10px;
+}
+
+#last-month-details-text b{
+  padding: 10px;
+  color: #6a707c;
+}
+
+.huge-text{
+  font-size: xx-large;
+}
+.green {
+  color:#33dabd;
+}
+
+.black{
+  color:#2d3339;
+}
+
+.grey{
+  color:#b0b0b0;
+}

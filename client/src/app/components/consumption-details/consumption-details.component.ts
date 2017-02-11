@@ -8,7 +8,23 @@ import {Router} from "@angular/router";
 })
 export class ConsumptionDetailsComponent implements OnInit {
 
-  public dateLong:string = Date().toString();
+  public dateLong:string = (new Date()).toLocaleString();
+  public daysLeft:number = this.getMonthDaysLeft();
+  public daysPercentage:number = this.getPercentage();
+
+  getMonthDaysLeft(){
+    var date = new Date();
+    return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate() - date.getDate();
+  }
+
+  getTotalDays() {
+    var date = new Date();
+    return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate() - date.getDate() - new Date(date.getFullYear(), date.getMonth(), 0).getDate() - date.getDate();
+  }
+
+  getPercentage() {
+    return this.getMonthDaysLeft() - this.getTotalDays();
+  }
 
   constructor(private _router: Router) { }
 
