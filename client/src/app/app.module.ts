@@ -18,6 +18,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { GeneralConsumptionComponent } from './components/general-consumption/general-consumption.component';
 
 import { ChartsModule } from 'ng2-charts';
+import { MaterialModule } from '@angular/material';
+import { ConsumptionCardComponent } from './components/consumption-card/consumption-card.component';
+import { ConsumptionTextComponent } from './components/consumption-text/consumption-text.component';
 
 
 @NgModule({
@@ -27,9 +30,12 @@ import { ChartsModule } from 'ng2-charts';
     ThingsComponent,
     LogoutComponent,
     DashboardComponent,
-    GeneralConsumptionComponent
+    GeneralConsumptionComponent,
+    ConsumptionCardComponent,
+    ConsumptionTextComponent
   ],
   imports: [
+    MaterialModule.forRoot(),
     BrowserModule,
     FormsModule,
     HttpModule,
