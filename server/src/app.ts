@@ -71,6 +71,7 @@ class App {
         app.use('/', expressRouter);
 
         const port = (process.env.VCAP_PORT || process.env.PORT || 8080);
+        const sslPort = 8443;
         const host = (process.env.VCAP_HOST || process.env.HOST || 'localhost');
 
         if (fs.existsSync(path.join(__dirname, '../resources/ssl/certificate.pem'))) {
@@ -80,7 +81,7 @@ class App {
                 cert: fs.readFileSync(path.join(__dirname, '../resources/ssl/certificate.pem'))
             };
             https.createServer(options, app).listen(port);
-            logger.info(`[NodeJS] Express server listening at https://${host}:${port}`);
+            logger.info(`[NodeJS] Express server listening at https://${host}:${sslPort}`);
         } else {
             logger.info('[NodeJS] No certificate at ' + path.join(__dirname, '../resources/ssl/certificate.pem') + ', starting HTTP server');
             app.listen(port);
