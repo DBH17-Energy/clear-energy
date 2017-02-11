@@ -14,7 +14,11 @@ import {ThingsComponent} from './components/things/things.component';
 import {ThingService} from './services/thing.service'
 import {AuthenticationService} from './services/authentication.service'
 import {LogoutComponent} from "./components/logout/logout.component";
-import {HomeComponent} from './components/home/home.component'
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { GeneralConsumptionComponent } from './components/general-consumption/general-consumption.component';
+
+import { ChartsModule } from 'ng2-charts';
+
 
 @NgModule({
   declarations: [
@@ -22,13 +26,15 @@ import {HomeComponent} from './components/home/home.component'
     LoginComponent,
     ThingsComponent,
     LogoutComponent,
-    HomeComponent
+    DashboardComponent,
+    GeneralConsumptionComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing
+    routing,
+    ChartsModule
   ],
   providers: [
     appRoutingProviders,
