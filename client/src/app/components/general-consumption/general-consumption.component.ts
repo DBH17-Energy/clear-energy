@@ -9,7 +9,7 @@ import {TransactionService} from '../../services/transaction.service';
 export class GeneralConsumptionComponent implements OnInit {
   // Doughnut
   private doughnutChartLabels:string[] = ['Green', 'Grey'];
-  private doughnutChartData:number[] = [50, 50];
+  private doughnutChartData:number[] = [70, 30];
   private doughnutChartType:string = 'doughnut';
   private backgroundColor:any = [{backgroundColor: ["#33dabd", "#9575cd"]}];
   private startTime:number;
