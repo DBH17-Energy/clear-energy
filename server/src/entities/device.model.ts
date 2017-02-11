@@ -1,5 +1,5 @@
 'use strict';
-import {User} from "./user.model";
+import {User} from './user.model';
 
 export class Device {
     private _id: string;

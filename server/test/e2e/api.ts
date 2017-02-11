@@ -43,6 +43,18 @@ describe('the running server', () => {
                     done(err);
                 });
         });
+
+        it('should return all transactions', (done) => {
+            server
+                .get('/api/v1/transactions/')
+                .set('x-access-token', token)
+                .expect(200)
+                .expect('Content-Type', /json/)
+                .end((err, res) => {
+                    expect(res.body.success).to.be.true;
+                    done(err);
+                });
+        });
     });
 
     describe('without receiving a token', () => {

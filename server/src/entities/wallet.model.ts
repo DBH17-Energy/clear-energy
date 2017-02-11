@@ -1,5 +1,5 @@
 'use strict';
-import {User} from "./user.model";
+import {User} from './user.model';
 
 export class Wallet {
     private _id: string;
@@ -7,7 +7,7 @@ export class Wallet {
     private _totalEunit: number;
     private _totalCo2: number;
 
-    constructor(id: string, owner: User, totalEunit: number, totalCo2: number) {
+    public constructor(id: string, owner: User, totalEunit: number, totalCo2: number) {
         this._id = id;
         this._owner = owner;
         this._totalEunit = totalEunit;

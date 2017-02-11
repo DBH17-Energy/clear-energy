@@ -65,7 +65,7 @@
           }
         ]
       },
-      "eUnit": 100.0,
+      "eunit": 100.0,
       "device": {
         "id": "sp1",
         "deviceType": "solar panel",
@@ -88,7 +88,7 @@
         "totalCo2": 0.0,
         "co2PerEUnit": 0.0
       },
-      "eType": "solar",
+      "etype": "solar",
       "co2": 0.0,
       "timestamp": 1486813496824
     },
@@ -119,7 +119,7 @@
           }
         ]
       },
-      "eUnit": 2000.0,
+      "eunit": 2000.0,
       "device": {
         "id": "npp1",
         "deviceType": "nuclear power plant",
@@ -141,7 +141,7 @@
         "totalCo2": 7500.0,
         "co2PerUnit": 0.75
       },
-      "eType": "nuclear",
+      "etype": "nuclear",
       "co2": 1.0,
       "timestamp": 1486813627996
     }

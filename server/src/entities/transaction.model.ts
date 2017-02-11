@@ -1,6 +1,6 @@
 'use strict';
-import {User} from "./user.model";
-import {Device} from "./device.model";
+import {User} from './user.model';
+import {Device} from './device.model';
 
 export class Transaction {
     private _id: string;
@@ -11,8 +11,9 @@ export class Transaction {
     private _etype: string;
     private _co2: number;
     private _timestamp: number;
+    private _transactionType: string;
 
-    constructor(id: string, sender: User, receiver: User, eunit: number, device: Device, etype: string, co2: number, timestamp: number) {
+    public constructor(id: string, sender: User, receiver: User, eunit: number, device: Device, etype: string, co2: number, timestamp: number, transactionType: string) {
         this._id = id;
         this._sender = sender;
         this._receiver = receiver;
@@ -21,6 +22,7 @@ export class Transaction {
         this._etype = etype;
         this._co2 = co2;
         this._timestamp = timestamp;
+        this._transactionType = transactionType;
     }
 
     public get id(): string {
@@ -55,7 +57,10 @@ export class Transaction {
         return this._timestamp;
     }
 
- 
+    public get transactionType(): string {
+        return this._transactionType;
+    }
+
     public toJSON(): any {
         return {
             'id': this.id,
@@ -66,6 +71,7 @@ export class Transaction {
             'etype': this.etype,
             'co2': this.co2,
             'timestamp': this.timestamp,
+            'transactionType': this.transactionType,
         };
     }
 }
