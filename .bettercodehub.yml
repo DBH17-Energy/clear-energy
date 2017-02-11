@@ -2,7 +2,7 @@ exclude:
 - /client/src/assets/js/ie/.*
 - /client/src/assets/js/.*
 - /client/karma.conf.js
-- /server/gruntgile.js
+- /server/gruntfile.js
 component_depth: 1
 languages:
 - go
