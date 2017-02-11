@@ -10,18 +10,197 @@
           "value": "john"
         }
       ]
-    }
-  ],
-  "things": [
-    {
-      "thingID": "1",
-      "userID": "john",
-      "someProperty": "8716948000003"
     },
     {
-      "thingID": "2",
-      "userID": "john",
-      "someProperty": "124914266456"
+      "userID": "matt",
+      "username": "matt",
+      "password": "passw0rd",
+      "attributes": [
+        {
+          "name": "userID",
+          "value": "matt"
+        }
+      ]
+    }
+  ],
+  "transactions": [
+    {
+      "id": "tr1",
+      "sender": {
+        "userID": "john",
+        "username": "john",
+        "password": "passw0rd",
+        "attributes": [
+          {
+            "name": "userID",
+            "value": "john"
+          }
+        ]
+      },
+      "receiver": {
+        "userID": "matt",
+        "username": "matt",
+        "password": "passw0rd",
+        "attributes": [
+          {
+            "name": "userID",
+            "value": "matt"
+          }
+        ]
+      },
+      "eUnit": 100.0,
+      "device": {
+        "id": "sp1",
+        "deviceType": "solar panel",
+        "energyType": "solar",
+        "owner": {
+          "userID": "john",
+          "username": "john",
+          "password": "passw0rd",
+          "attributes": [
+            {
+              "name": "userID",
+              "value": "john"
+            }
+          ]
+        },
+        "locationX": 53.242642,
+        "locationY": 6.545827,
+        "totalEUnit": 100.0,
+        "totalCo2": 0.0,
+        "co2PerEUnit": 0.0
+      },
+      "eType": "solar",
+      "co2": 0.0,
+      "timestamp": 1486813496824
+    },
+    {
+      "id": "tr2",
+      "sender": {
+        "userID": "matt",
+        "username": "matt",
+        "password": "passw0rd",
+        "attributes": [
+          {
+            "name": "userID",
+            "value": "matt"
+          }
+        ]
+      },
+      "receiver": {
+        "userID": "john",
+        "username": "john",
+        "password": "passw0rd",
+        "attributes": [
+          {
+            "name": "userID",
+            "value": "john"
+          }
+        ]
+      },
+      "eUnit": 2000.0,
+      "device": {
+        "id": "npp1",
+        "deviceType": "nuclear power plant",
+        "energyType": "nuclear",
+        "owner": {
+          "userID": "matt",
+          "username": "matt",
+          "password": "passw0rd",
+          "attributes": [
+            {
+              "name": "userID",
+              "value": "matt"
+            }
+          ]
+        },
+        "locationX": 37.077297,
+        "locationY": 136.762534,
+        "totalEUnit": 10000.0,
+        "totalCo2": 7500.0,
+        "co2PerUnit": 0.75
+      },
+      "eType": "nuclear",
+      "co2": 1.0,
+      "timestamp": 1486813627996
+    }
+  ],
+  "devices": [
+    {
+      "id": "sp1",
+      "deviceType": "solar panel",
+      "energyType": "solar",
+      "owner": {
+        "userID": "john",
+        "username": "john",
+        "password": "passw0rd",
+        "attributes": [
+          {
+            "name": "userID",
+            "value": "john"
+          }
+        ]
+      },
+      "locationX": 53.242642,
+      "locationY": 6.545827,
+      "totalEUnit": 100.0,
+      "totalCo2": 0.0,
+      "co2PerEUnit": 0.0
+    },
+    {
+      "id": "npp1",
+      "deviceType": "nuclear power plant",
+      "energyType": "nuclear",
+      "owner": {
+        "userID": "matt",
+        "username": "matt",
+        "password": "passw0rd",
+        "attributes": [
+          {
+            "name": "userID",
+            "value": "matt"
+          }
+        ]
+      },
+      "locationX": 37.077297,
+      "locationY": 136.762534,
+      "totalEUnit": 10000.0,
+      "totalCo2": 7500.0,
+      "co2PerUnit": 0.75
+    }
+  ],
+  "wallets":[
+    {
+      "id": "wal1",
+      "owner": {
+        "userID": "john",
+        "username": "john",
+        "password": "passw0rd",
+        "attributes": [
+          {
+            "name": "userID",
+            "value": "john"
+          }
+        ]
+      },
+      "totalEUnit": 100.0,
+      "totalCo2": 0.0
+    },
+    {
+      "id": "wal2",
+      "owner": {
+        "userID": "matt",
+        "username": "matt",
+        "password": "passw0rd",
+        "attributes": [
+          {
+            "name": "userID",
+            "value": "matt"
+          }
+        ]
+      },
+      "totalEUnit": 1000.0,
+      "totalCo2": 750.0
     }
   ]
 }
