@@ -13,6 +13,10 @@ export class DashboardComponent implements OnInit {
     this._router.navigate(['./login']);
   }
 
+  public demo() {
+    this._router.navigate(['./consumption'])
+  }
+
   ngOnInit() {
   }
 

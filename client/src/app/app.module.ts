@@ -15,6 +15,10 @@ import {ThingService} from './services/thing.service'
 import {AuthenticationService} from './services/authentication.service'
 import {LogoutComponent} from "./components/logout/logout.component";
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { GeneralConsumptionComponent } from './components/general-consumption/general-consumption.component';
+
+import { ChartsModule } from 'ng2-charts';
+
 
 @NgModule({
   declarations: [
@@ -22,13 +26,15 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     LoginComponent,
     ThingsComponent,
     LogoutComponent,
-    DashboardComponent
+    DashboardComponent,
+    GeneralConsumptionComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing
+    routing,
+    ChartsModule
   ],
   providers: [
     appRoutingProviders,
