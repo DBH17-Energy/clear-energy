@@ -1,6 +1,6 @@
 exclude:
 - /client/src/assets/js/ie/.*
-- /client/src/assets/js/*
+- /client/src/assets/js/.*
 - /client/karma.conf.js
 - /server/gruntgile.js
 component_depth: 1
