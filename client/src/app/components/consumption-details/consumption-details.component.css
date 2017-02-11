@@ -1,0 +1,22 @@
+.consumption-details{
+  color: #2d3339;
+}
+
+.consumption-details b{
+  color: #2d3339;
+}
+
+.consumption-details span{
+  color: #2d3339;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+.consumption-details h1{
+  font-size: x-large;
+  color: #33dabd;
+}
+
+.consumption-details button{
+  background-color: #2d3339;
+}
