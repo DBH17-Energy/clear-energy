@@ -26,8 +26,13 @@ export class GeneralConsumptionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getTransactionsByTimeframe();
-    setInterval(() => { this.getTransactionsByTimeframe();}, 5000);
+    var storage = JSON.parse(localStorage.getItem('currentUser'));
+    if (storage !== null) {
+      this.getTransactionsByTimeframe();
+      setInterval(() => {
+        this.getTransactionsByTimeframe();
+      }, 5000);
+    }
   }
 
   private getTransactionsByTimeframe(): void {

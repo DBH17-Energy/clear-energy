@@ -8,7 +8,7 @@ import {TransactionService} from '../../services/transaction.service';
 })
 export class ConsumptionTextComponent implements OnInit {
 
-  private totalAmount: number;
+  private totalAmount: number = 100;
   private month: string = "February";
   private startTime: number = 1485903600000;
   private endTime: number = new Date().getTime();
@@ -16,8 +16,13 @@ export class ConsumptionTextComponent implements OnInit {
   constructor(private _transactionService: TransactionService) { }
 
   ngOnInit() {
-    this.calculateUsage();
-    setInterval(() => { this.calculateUsage();}, 5000);
+    var storage = JSON.parse(localStorage.getItem('currentUser'));
+    if (storage !== null) {
+      this.calculateUsage();
+      setInterval(() => {
+        this.calculateUsage();
+      }, 5000);
+    }
   }
 
   private calculateUsage(): void {

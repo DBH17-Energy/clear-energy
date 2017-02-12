@@ -16,9 +16,15 @@ export class ConsumptionDetailsComponent implements OnInit {
   constructor(private _router: Router) { }
 
   ngOnInit() {
-    this.username = JSON.parse(localStorage.getItem('currentUser')).user.username;
-    this.updateDate();
-    setInterval(() => { this.updateDate();}, 5000);
+    var storage = JSON.parse(localStorage.getItem('currentUser'));
+    if (storage !== null) {
+      this.username = storage.user.username;
+
+      this.updateDate();
+      setInterval(() => { this.updateDate();}, 5000);
+    } else {
+      this.username =  "john";
+    }
   }
 
   private overview() {
