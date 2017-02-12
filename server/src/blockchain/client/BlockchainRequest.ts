@@ -33,12 +33,12 @@ export abstract class BlockchainRequest {
       let transactionContext = this.doRequest(blockchainUser, blockchainRequest);
 
       transactionContext.on('submitted', (results: any) => {
-        this.logger.info('[SDK] submitted %s: %j', this.queryType, results);
+        //this.logger.info('[SDK] submitted %s: %j', this.queryType, results);
       });
       transactionContext.on('complete', (results: any) => {
         let processedResults = this.processResults(results);
 
-        this.logger.info('[SDK] completed %s: %j', this.queryType, processedResults);
+        //this.logger.info('[SDK] completed %s: %j', this.queryType, processedResults);
 
         resolve(processedResults);
       });
