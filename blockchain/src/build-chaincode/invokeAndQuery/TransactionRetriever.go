@@ -15,7 +15,7 @@ func GetTransactionsByUserID(stub shim.ChaincodeStubInterface, userID string) ([
 	filteredTransactions := []entities.Transaction{}
 
 	for _, transaction := range transactions {
-		if (transaction.Sender.UserID == userID) {
+		if (transaction.Sender.UserID == userID || transaction.Receiver.UserID == userID) {
 			filteredTransactions = append(filteredTransactions,transaction)
 		}
 	}
