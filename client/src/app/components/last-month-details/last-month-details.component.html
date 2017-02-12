@@ -2,42 +2,59 @@
 <div id="last-month-details-text">
 <p><b>Energy consumption in {{lastMonth}}</b><br />
 
-<div class="row uniform">
-  <div class="2u 12u$(xsmall)">
-    <div class="mini-donut">
-      <canvas baseChart
-              [data]="doughnutChartData"
-              [labels]="doughnutChartLabels"
-              [chartType]="doughnutChartType"
-              [colors]="backgroundColor"
-              [options]="{responsive: true,maintainAspectRatio: true, circumference:0.65 * 2 * 3.14}"
-              (chartHover)="chartHovered($event)"
-              (chartClick)="chartClicked($event)"></canvas>
+  <div class="row uniform">
+    <div class="2u 12u$(xsmall)">
+      <div class="mini-donut">
+        <canvas baseChart
+                [data]="doughnutChartData"
+                [labels]="doughnutChartLabels"
+                [chartType]="doughnutChartType"
+                [colors]="backgroundColor"
+                [options]="{responsive: true,maintainAspectRatio: true, circumference:0.65 * 2 * 3.14}"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
+      </div>
+    </div>
+
+    <div class="2u 12u$(xsmall)">
+      <b><span class="huge-text green">110</span> kWh</b><br />
+      <b>green energy</b>
+    </div>
+
+    <div class="1u 12u$(xsmall)">
+      <b><span class="huge-text grey">/</span></b>
+    </div>
+
+    <div class="2u 12u$(xsmall)">
+      <b><span class="huge-text black">225</span> kWh</b><br />
+      <b>total energy</b>
+    </div>
+
+    <div class="2u 12u$(xsmall)">
+      <b><span class="huge-text black">€ 85</span></b><br />
+      <b>cost last month</b>
+    </div>
+
+    <div class="2u$ 12u$(xsmall)">
+      <button>See more details</button>
+    </div>
+  </div>
+  <hr>
+  <div class="row uniform" style="padding: 0px 0px 0px 50px">
+    <div class="1u 12u$(xsmall)">
+      <img src="/images/left.svg">
+    </div>
+    <div class="5u 12u$(xsmall)">
+      <p class="large-text last-month-bottom black">I want to use more green <br /> energy at home</p>
+      <a class="green last-month-bottom" href="#">VIEW DETAILS &gt;</a>
+    </div>
+    <div class="1u 12u$(xsmall)">
+      <img src="/images/right.svg">
+    </div>
+    <div class="5u 12u$(xsmall)">
+      <p class="large-text last-month-bottom black">See how you score when <br /> comparing to your neighbors!</p>
+      <a class="green last-month-bottom" href="#">GO TO THE RANK &gt;</a>
     </div>
   </div>
 
-  <div class="2u 12u$(xsmall)">
-    <b><span class="huge-text green">110</span> kWh</b><br />
-    <b>green energy</b>
-  </div>
-
-  <div class="1u 12u$(xsmall)">
-    <b><span class="huge-text grey">OF</span></b>
-  </div>
-
-  <div class="2u 12u$(xsmall)">
-    <b><span class="huge-text black">225</span> kWh</b><br />
-    <b>total energy</b>
-  </div>
-
-  <div class="2u 12u$(xsmall)">
-    <b><span class="huge-text black">€ 85</span></b><br />
-    <b>cost last month</b>
-  </div>
-
-  <div class="2u$ 12u$(xsmall)">
-    <button>See more details</button>
-  </div>
-
-</div>
 </div>

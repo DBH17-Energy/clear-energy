@@ -18,6 +18,7 @@ export class ConsumptionGreenComponent implements OnInit {
 
 
   public backgroundColor:any = {backgroundColor: ["#33dabd", "#9575cd"]};
+  public greenco:number = 200;
 
   // events
   public chartClicked(e:any):void {
@@ -32,5 +33,4 @@ export class ConsumptionGreenComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

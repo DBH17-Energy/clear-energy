@@ -15,6 +15,7 @@ export class ConsumptionGreyComponent implements OnInit {
   //                                         yAxes: [{display: true, ticks: {beginAtZero: true, steps: 10, stepValue: 5, max: 100}}]
   //                              }}];
   public backgroundColor:any = [{backgroundColor: ["#33dabd", "#9575cd"]}];
+  public greyco:number = 300;
 
   // events
   public chartClicked(e:any):void {

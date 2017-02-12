@@ -85,7 +85,12 @@ func (t *Chaincode) GetQueryResult(stub shim.ChaincodeStubInterface, functionNam
 	} else if functionName == "getTransactionsByUserID" {
 		return invokeAndQuery.GetTransactionsByUserID(stub, args[0])
 	} else if functionName == "getTransactions" {
-		return util.GetTransactions(stub)
+		user, err := util.GetCurrentBlockchainUser(stub)
+		if err != nil {
+			return nil, err
+		}
+
+		return invokeAndQuery.GetTransactionsByUserID(stub,user.UserID)
 	} else if functionName == "getTransactionsByUserIDAndTimeframe" {
 		startDateInMilliseconds, err := strconv.Atoi(args[1])
 		if err != nil {

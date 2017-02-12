@@ -1,0 +1,13 @@
+<div class="row uniform">
+  <h2><b style="color:#000000">Power now</b></h2>
+    <div class="linechart">
+      <canvas baseChart
+              [data]="powernowChartData"
+              [labels]="powernowChartLabels"
+              [chartType]="powernowChartType"
+              [colors]="backgroundColor"
+              [options]='powernowChartOptions'
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+    </div>
+</div>

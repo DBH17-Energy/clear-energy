@@ -15,6 +15,7 @@ import * as express from 'express';
 import * as path from 'path';
 import * as cors from 'cors';
 import {Container} from 'typedi';
+import {TransactionGenerator} from './testdata/transaction-generator';
 
 class App {
     public async run(): Promise<void> {
@@ -30,6 +31,9 @@ class App {
             logger.error(error.stack);
         });
 
+        //Send 100 random transactions per second to the blockchain
+        new TransactionGenerator(blockchainClient , logger).submitRandomTransactions();
+
         const app = express();
         app.use((request: any, response: any, next: NextFunction) => {
             request.blockchain = blockchainClient;
@@ -37,6 +41,14 @@ class App {
         });
 
         app.use(cors());
+
+        // Enable CORS
+        // http://stackoverflow.com/questions/11181546/how-to-enable-cross-origin-resource-sharing-cors-in-the-express-js-framework-o
+        app.all('/', (req: any, res: any, next: NextFunction) => {
+            res.header('Access-Control-Allow-Origin', '*');
+            res.header('Access-Control-Allow-Headers', 'X-Requested-With');
+            next();
+        });
 
         useContainer(Container);
         // initialize routing
@@ -57,20 +69,13 @@ class App {
             }
         }));
 
-        // Enable CORS
-        // http://stackoverflow.com/questions/11181546/how-to-enable-cross-origin-resource-sharing-cors-in-the-express-js-framework-o
-        app.all('/', (req: any, res: any, next: NextFunction) => {
-            res.header('Access-Control-Allow-Origin', '*');
-            res.header('Access-Control-Allow-Headers', 'X-Requested-With');
-            next();
-        });
-
         // routes
         const expressRouter: Router = express.Router();
         new Routes(blockchainClient, logger).register(expressRouter);
         app.use('/', expressRouter);
 
         const port = (process.env.VCAP_PORT || process.env.PORT || 8080);
+        const sslPort = 8443;
         const host = (process.env.VCAP_HOST || process.env.HOST || 'localhost');
 
         if (fs.existsSync(path.join(__dirname, '../resources/ssl/certificate.pem'))) {
@@ -79,8 +84,8 @@ class App {
                 key: fs.readFileSync(path.join(__dirname, '../resources/ssl/private.key')),
                 cert: fs.readFileSync(path.join(__dirname, '../resources/ssl/certificate.pem'))
             };
-            https.createServer(options, app).listen(port);
-            logger.info(`[NodeJS] Express server listening at https://${host}:${port}`);
+            https.createServer(options, app).listen(sslPort);
+            logger.info(`[NodeJS] Express server listening at https://${host}:${sslPort}`);
         } else {
             logger.info('[NodeJS] No certificate at ' + path.join(__dirname, '../resources/ssl/certificate.pem') + ', starting HTTP server');
             app.listen(port);

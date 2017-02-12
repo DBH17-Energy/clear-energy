@@ -22,7 +22,7 @@ export class GeneralConsumptionComponent implements OnInit {
     this.startTime = 1485903600000;
     this.endTime = new Date().getTime();
     this.totalGreyAmount = 0;
-    this.totalGreyAmount = 0;
+    this.totalGreenAmount = 0;
   }
 
   ngOnInit() {

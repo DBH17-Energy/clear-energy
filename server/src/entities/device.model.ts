@@ -12,16 +12,16 @@ export class Device {
     private _totalEunit: number;
     private _totalCo2: number;
 
-    public constructor(id: string, deviceType: string, energyType: string, co2PerEUnit: number, owner: User, locationX: number, locationY: number, totalEunit: number, totalCo2: number) {
-        this._id = id;
-        this._deviceType = deviceType;
-        this._energyType = energyType;
-        this._co2PerEUnit = co2PerEUnit;
-        this._owner = owner;
-        this._locationX = locationX;
-        this._locationY = locationY;
-        this._totalEunit = totalEunit;
-        this._totalCo2 = totalCo2;
+    public constructor(device: any) {
+        this._id = device.id;
+        this._deviceType = device.deviceType;
+        this._energyType = device.energyType;
+        this._co2PerEUnit = device.co2PerEUnit;
+        this._owner = device.owner;
+        this._locationX = device.locationX;
+        this._locationY = device.locationY;
+        this._totalEunit = device.totalEunit;
+        this._totalCo2 = device.totalCo2;
     }
 
     public get id(): string {

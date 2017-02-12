@@ -31,6 +31,7 @@ server:
   build: server
   ports:
     - "8080:8080"
+    - "8443:8443"
   environment:
     - NODE_ENV=development
     - MEMBERSRVC_ADDR=membersrvc:7054
