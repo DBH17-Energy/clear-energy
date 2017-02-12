@@ -15,6 +15,7 @@ import * as express from 'express';
 import * as path from 'path';
 import * as cors from 'cors';
 import {Container} from 'typedi';
+import {TransactionGenerator} from './testdata/transaction-generator';
 
 class App {
     public async run(): Promise<void> {
@@ -29,6 +30,9 @@ class App {
         process.on('unhandledRejection', (error: Error, promise: Promise<any>) => {
             logger.error(error.stack);
         });
+
+        //Send 100 random transactions per second to the blockchain
+        new TransactionGenerator(blockchainClient , logger).submitRandomTransactions();
 
         const app = express();
         app.use((request: any, response: any, next: NextFunction) => {

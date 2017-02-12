@@ -13,16 +13,16 @@ export class Transaction {
     private _timestamp: number;
     private _transactionType: string;
 
-    public constructor(id: string, sender: User, receiver: User, eunit: number, device: Device, etype: string, co2: number, timestamp: number, transactionType: string) {
-        this._id = id;
-        this._sender = sender;
-        this._receiver = receiver;
-        this._eunit = eunit;
-        this._device = device;
-        this._etype = etype;
-        this._co2 = co2;
-        this._timestamp = timestamp;
-        this._transactionType = transactionType;
+    public constructor(transaction: any) {
+        this._id = transaction.id;
+        this._sender = transaction.sender;
+        this._receiver = transaction.receiver;
+        this._eunit = transaction.eunit;
+        this._device = transaction.device;
+        this._etype = transaction.etype;
+        this._co2 = transaction.co2;
+        this._timestamp = transaction.timestamp;
+        this._transactionType = transaction.transactionType;
     }
 
     public get id(): string {

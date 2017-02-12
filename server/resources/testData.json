@@ -35,13 +35,25 @@
           "value": "charlotte"
         }
       ]
+    },
+    {
+      "userID": "luna",
+      "username": "luna",
+      "password": "passw0rd",
+      "role": "consumer",
+      "attributes": [
+        {
+          "name": "userID",
+          "value": "luna"
+        }
+      ]
     }
   ],
   "transactions": [
     {
       "id": "tr1",
       "transactionType": "buy",
-      "sender": {
+      "receiver": {
         "userID": "gary",
         "username": "gary",
         "password": "passw0rd",
@@ -53,11 +65,11 @@
           }
         ]
       },
-      "receiver": {
-        "userID": "matt",
-        "username": "matt",
+      "sender": {
+        "userID": "charlotte",
+        "username": "charlotte",
         "password": "passw0rd",
-        "role": "producer",
+        "role": "supplier",
         "attributes": [
           {
             "name": "userID",
@@ -71,14 +83,14 @@
         "deviceType": "solar panel",
         "energyType": "solar",
         "owner": {
-          "userID": "gary",
-          "username": "gary",
+          "userID": "matt",
+          "username": "matt",
           "password": "passw0rd",
-          "role": "consumer",
+          "role": "producer",
           "attributes": [
             {
               "name": "userID",
-              "value": "gary"
+              "value": "matt"
             }
           ]
         },
@@ -96,10 +108,10 @@
       "id": "tr2",
       "transactionType": "sell",
       "sender": {
-        "userID": "matt",
-        "username": "matt",
+        "userID": "charlotte",
+        "username": "charlotte",
         "password": "passw0rd",
-        "role": "producer",
+        "role": "supplier",
         "attributes": [
           {
             "name": "userID",
@@ -119,7 +131,7 @@
           }
         ]
       },
-      "eunit": 2000.0,
+      "eunit": 500.0,
       "device": {
         "id": "npp1",
         "deviceType": "nuclear power plant",
