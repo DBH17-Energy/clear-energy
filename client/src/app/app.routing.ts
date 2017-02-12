@@ -7,7 +7,7 @@ import {TransactionsComponent} from './components/transactions/transactions.comp
 import {DashboardComponent} from './components/dashboard/dashboard.component'
 import {ConsumptionCardComponent} from './components/consumption-card/consumption-card.component'
 import {OverviewCardComponent} from './components/overview-card/overview-card.component'
-
+import {ActionCardComponent} from './components/action-card/action-card.component'
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -15,6 +15,7 @@ const appRoutes: Routes = [
   {path: 'transactions', component: TransactionsComponent, canActivate: [AuthGuard]},
   {path: 'consumption', component: ConsumptionCardComponent},
   {path: 'overview', component: OverviewCardComponent},
+  {path: 'action', component: ActionCardComponent},
   {path: '', component: DashboardComponent},
 
   // otherwise redirect to home

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-last-month-details',
@@ -13,9 +14,13 @@ export class LastMonthDetailsComponent implements OnInit {
   public backgroundColor:any = [{backgroundColor: ["#33dabd", "#9575cd"]}];
   public lastMonth:string = "January";
 
-  constructor() { }
+  constructor(private _router: Router) { }
 
   ngOnInit() {
+  }
+
+  toAction() {
+    this._router.navigate(['./action'])
   }
 
 }

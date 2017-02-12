@@ -34,6 +34,7 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
 import { SourcesMapComponent } from './components/sources-map/sources-map.component';
 import { TransactionsComponent } from './components/transactions/transactions.component';
 import { PowerNowComponent } from './components/power-now/power-now.component';
+import { ActionCardComponent } from './components/action-card/action-card.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { PowerNowComponent } from './components/power-now/power-now.component';
     OverviewCardComponent,
     SourcesMapComponent,
     TransactionsComponent,
-    PowerNowComponent
+    PowerNowComponent,
+    ActionCardComponent
   ],
   imports: [
     MaterialModule.forRoot(),
