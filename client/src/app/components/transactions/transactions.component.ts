@@ -9,9 +9,10 @@ import {Observable} from 'rxjs/Observable';
   providers: [TransactionService]
 })
 export class TransactionsComponent implements OnInit {
-  public rows:string[] = ["A", "B", "C"];
-  public transactions:Observable<any>;
-  public transactionArray:any[] = [];
+  private rows:string[] = ["A", "B", "C"];
+  private transactions:Observable<any>;
+  private transactionArray:any[] = [];
+
   constructor(private _transactionService: TransactionService) { }
 
   ngOnInit() {
@@ -20,10 +21,9 @@ export class TransactionsComponent implements OnInit {
   }
 
   private getTransactions(): void {
-    this.transactions = this._transactionService.getTransactions();
-    this.transactions.subscribe(event => {
-      console.log(event);
-      event.forEach(item => this.transactionArray.push(item));
+    this._transactionService.getTransactions().subscribe(txs => {
+      this.transactions = txs;
+      console.log(this.transactions)
     });
   }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {TransactionService} from '../../services/transaction.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-general-consumption',
@@ -14,7 +15,7 @@ export class GeneralConsumptionComponent implements OnInit {
   private backgroundColor:any = [{backgroundColor: ["#33dabd", "#9575cd"]}];
   private startTime:number;
   private endTime:number;
-  private transactions:any[];
+  private transactions:Observable<any>;
   private totalGreyAmount:number;
   private totalGreenAmount:number;
 
@@ -35,7 +36,7 @@ export class GeneralConsumptionComponent implements OnInit {
     }
   }
 
-  private getTransactionsByTimeframe(): void {
+  private getTransactionsByTimeframe() {
       this._transactionService.getTransactionsByTimeframe(this.startTime, this.endTime).subscribe(txs => {
 
       this.transactions = txs;
@@ -48,11 +49,11 @@ export class GeneralConsumptionComponent implements OnInit {
     });
   }
 
-  private chartClicked(e:any):void {
+  private chartClicked(e:any) {
 
   }
 
-  private chartHovered(e:any):void {
+  private chartHovered(e:any) {
 
   }
 
