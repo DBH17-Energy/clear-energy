@@ -1,6 +1,9 @@
-<div class="row uniform">
-  <h2><b style="color:#000000">Power now</b></h2>
-    <div class="linechart">
+<div class="row uniform" style="padding: 0px 0px 0px 50px;width: 100%">
+<div>
+  <div>
+    <h2><b style="color:#000000">Power now</b></h2>
+  </div>
+  <div class="linechart">
       <canvas baseChart
               [data]="powernowChartData"
               [labels]="powernowChartLabels"
@@ -9,5 +12,6 @@
               [options]='powernowChartOptions'
               (chartHover)="chartHovered($event)"
               (chartClick)="chartClicked($event)"></canvas>
-    </div>
+  </div>
+</div>
 </div>
