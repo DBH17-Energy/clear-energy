@@ -12,6 +12,11 @@
 .huge-text{
   font-size: xx-large;
 }
+
+.large-text{
+  font-size: x-large;
+}
+
 .green {
   color:#33dabd;
 }
@@ -22,4 +27,8 @@
 
 .grey{
   color:#b0b0b0;
+}
+
+.last-month-bottom{
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
