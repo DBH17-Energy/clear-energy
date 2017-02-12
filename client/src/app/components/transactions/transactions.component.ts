@@ -16,9 +16,10 @@ export class TransactionsComponent implements OnInit {
 
   ngOnInit() {
     this.getTransactions();
+    setInterval(() => { this.getTransactions();}, 5000);
   }
 
-  getTransactions(): void {
+  private getTransactions(): void {
     this.transactions = this._transactionService.getTransactions();
     this.transactions.subscribe(event => {
       console.log(event);

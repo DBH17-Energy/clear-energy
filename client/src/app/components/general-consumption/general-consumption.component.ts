@@ -26,7 +26,12 @@ export class GeneralConsumptionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._transactionService.getTransactionsByTimeframe(this.startTime, this.endTime).subscribe(txs => {
+    this.getTransactionsByTimeframe();
+    setInterval(() => { this.getTransactionsByTimeframe();}, 5000);
+  }
+
+  private getTransactionsByTimeframe(): void {
+      this._transactionService.getTransactionsByTimeframe(this.startTime, this.endTime).subscribe(txs => {
 
       this.transactions = txs;
       console.log(this.transactions);

@@ -8,31 +8,39 @@ import {Router} from "@angular/router";
 })
 export class ConsumptionDetailsComponent implements OnInit {
 
-  public dateLong:string = (new Date()).toLocaleString();
-  public daysLeft:number = this.getMonthDaysLeft();
-  public daysPercentage:number = this.getPercentage();
+  private dateLong:string;
+  private daysLeft:number = this.getMonthDaysLeft();
+  private daysPercentage:number = this.getPercentage();
+  private username: string;
 
-  getMonthDaysLeft(){
+  constructor(private _router: Router) { }
+
+  ngOnInit() {
+    this.username = JSON.parse(localStorage.getItem('currentUser')).user.username;
+    this.updateDate();
+    setInterval(() => { this.updateDate();}, 5000);
+  }
+
+  private overview() {
+    this._router.navigate(['./overview'])
+  }
+
+  private updateDate() {
+    this.dateLong = (new Date()).toLocaleString();
+  }
+
+  private getMonthDaysLeft(){
     var date = new Date();
     return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate() - date.getDate();
   }
 
-  getTotalDays() {
+  private getTotalDays() {
     var date = new Date();
     return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate() - date.getDate() - new Date(date.getFullYear(), date.getMonth(), 0).getDate() - date.getDate();
   }
 
-  getPercentage() {
+  private getPercentage() {
     return this.getMonthDaysLeft() - this.getTotalDays();
-  }
-
-  constructor(private _router: Router) { }
-
-  public overview() {
-    this._router.navigate(['./overview'])
-  }
-
-  ngOnInit() {
   }
 
 }

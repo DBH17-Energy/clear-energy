@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConsumptionGreenComponent implements OnInit {
   // barchart
-  public greenChartLabels:string[] = ['Solar', 'Wind', 'hydro'];
+  public greenChartLabels:string[] = ['Solar', 'Wind', 'Hydro'];
   public greenChartData:number[] = [55, 40, 5];
   public greenChartType:string = 'doughnut';  //'horizontalBar';
 

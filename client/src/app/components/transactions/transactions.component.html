@@ -33,7 +33,7 @@
           <td>{{transaction.device.id}}</td>
           <td>{{transaction.etype}}</td>
           <td>{{transaction.co2}}</td>
-          <td>{{transaction.timestamp}}</td>
+          <td>{{transaction.timestamp | date: "dd-MM-yyyy hh:mm:ss"}}</td>
         </tr>
         </tbody>
       </table>
