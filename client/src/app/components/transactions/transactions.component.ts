@@ -11,19 +11,20 @@ import {Observable} from 'rxjs/Observable';
 export class TransactionsComponent implements OnInit {
   private rows:string[] = ["A", "B", "C"];
   private transactions:Observable<any>;
-  private transactionArray:any[] = [];
+  private loading:string = "Loading..."
 
   constructor(private _transactionService: TransactionService) { }
 
   ngOnInit() {
     this.getTransactions();
-    setInterval(() => { this.getTransactions();}, 5000);
   }
 
   private getTransactions(): void {
     this._transactionService.getTransactions().subscribe(txs => {
+      this.loading = "";
       this.transactions = txs;
       console.log(this.transactions)
+      setInterval(() => { this.getTransactions();}, 5000);
     });
   }
 
