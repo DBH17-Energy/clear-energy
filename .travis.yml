@@ -7,7 +7,7 @@ language: node_js
 node_js:
   - "node"
 
-#No install
-install: true
+install:
+  - docker-compose -f docker-util.yml run utils bash -c "cd blockchain/src/build-chaincode && GOPATH=$(pwd)/../.. govend -v"
 
 script: npm test
