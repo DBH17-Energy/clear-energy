@@ -8,6 +8,6 @@ node_js:
   - "node"
 
 install:
-  - docker-compose -f docker-util.yml run utils bash -c "cd blockchain/src/build-chaincode && GOPATH=$(pwd)/../.. govend -v"
+  - docker-compose -f docker-util.yml run utils bash -c 'cd blockchain/src/build-chaincode && GOPATH=$(pwd)/../.. govend -v'
 
 script: npm test
